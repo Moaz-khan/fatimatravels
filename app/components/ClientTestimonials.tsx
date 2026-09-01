@@ -152,7 +152,7 @@ export default function ClientTestimonials() {
   return (
     <section
       id="testimonials"
-      className="relative overflow-hidden bg-black py-24 text-white md:py-32"
+      className="relative overflow-hidden bg-transparent py-24 text-black md:py-32"
     >
       {/* Ambient Luxury Lighting */}
       <div className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 h-[550px] w-[750px] rounded-full bg-amber-500/[0.035] blur-[150px]" />
@@ -166,20 +166,20 @@ export default function ClientTestimonials() {
         <div className="mx-auto max-w-3xl text-center">
           {/* Tagline */}
           <div className="mb-4 inline-flex items-center gap-3">
-            <span className="h-px w-8 bg-amber-400/40" />
-            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-amber-300/90">
+            <span className="h-px w-8 bg-black" />
+            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#5409DA]">
               Trusted by 10,000+ Travelers
             </span>
-            <span className="h-px w-8 bg-amber-400/40" />
+            <span className="h-px w-8 bg-black" />
           </div>
 
           {/* Heading */}
-          <h2 className="font-serif text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[52px] lg:leading-[1.12]">
+          <h2 className="font-serif text-3xl font-medium tracking-tight text-black sm:text-4xl md:text-5xl lg:text-[52px] lg:leading-[1.12]">
             Stories of Unforgettable Journeys
           </h2>
 
           {/* Subheading */}
-          <p className="mt-4 text-sm leading-relaxed text-white/70 sm:text-base md:text-lg">
+          <p className="mt-4 text-sm leading-relaxed text-black sm:text-base md:text-lg">
             Hear from our esteemed travelers who entrusted their sacred pilgrimages, family holidays, and luxury escapes to Fatima Travels.
           </p>
         </div>
@@ -232,15 +232,15 @@ export default function ClientTestimonials() {
                 style={{ zIndex }}
                 className={`absolute w-full max-w-[92vw] cursor-pointer rounded-[28px] border transition-all duration-500 sm:max-w-[560px] md:max-w-[640px] lg:max-w-[700px] ${
                   isActive
-                    ? "border-amber-400/35 bg-gradient-to-b from-zinc-900/95 via-zinc-950/95 to-black/95 p-7 shadow-[0_25px_60px_rgba(0,0,0,0.95)] ring-1 ring-amber-400/20 backdrop-blur-xl sm:p-9 md:p-10"
-                    : "border-white/10 bg-zinc-900/80 p-7 backdrop-blur-md hover:border-white/30 sm:p-9 md:p-10"
+                    ? "border-[#5409DA]/40 bg-[#FBFBFB] p-7 shadow-lg ring-1 ring-[#5409DA]/20 sm:p-9 md:p-10"
+                    : "border-gray-200 bg-[#FBFBFB] p-7 hover:border-[#5409DA]/30 sm:p-9 md:p-10"
                 }`}
               >
                 {/* Top Card Bar: Rating & Service Pill */}
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   {/* Star Rating & Quote Symbol */}
                   <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1 text-amber-400">
+                    <div className="flex items-center gap-1 text-[#5409DA]">
                       {[...Array(item.rating)].map((_, i) => (
                         <span key={i} className="text-sm sm:text-base">
                           ★
@@ -248,14 +248,14 @@ export default function ClientTestimonials() {
                       ))}
                     </div>
 
-                    <span className="text-[11px] font-medium text-white/50">
+                    <span className="text-[11px] font-medium text-black">
                       5.0
                     </span>
                   </div>
 
                   {/* Service Badge */}
                   <div className="flex items-center gap-2">
-                    <span className="rounded-full border border-amber-400/25 bg-amber-400/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-amber-300 backdrop-blur-md">
+                    <span className="rounded-full border border-[#5409DA] bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-black">
                       {item.service}
                     </span>
                   </div>
@@ -264,26 +264,26 @@ export default function ClientTestimonials() {
                 {/* Testimonial Quote */}
                 <div className="relative mt-6">
                   {/* Large Decorative Watermark Quote Mark */}
-                  <span className="pointer-events-none absolute -left-2 -top-5 select-none font-serif text-6xl font-black text-amber-400/10 sm:-left-3 sm:-top-7 sm:text-7xl">
+                  <span className="pointer-events-none absolute -left-2 -top-5 select-none font-serif text-6xl font-black text-black/10 sm:-left-3 sm:-top-7 sm:text-7xl">
                     “
                   </span>
 
-                  <p className="relative z-10 text-sm font-light leading-relaxed text-white/90 sm:text-base sm:leading-8 md:text-[17px]">
+                  <p className="relative z-10 text-sm font-normal leading-relaxed text-black sm:text-base sm:leading-8 md:text-[17px]">
                     {item.quote}
                   </p>
                 </div>
 
                 {/* Highlight Tag */}
-                <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs text-white/70 backdrop-blur-md">
-                  <span className="text-emerald-400">✦</span>
-                  <span className="text-[11px] text-white/80">Highlight: {item.tripHighlight}</span>
+                <div className="mt-4 inline-flex items-center gap-2 rounded-lg border border-[#5409DA]/20 bg-blue-50/50 px-3 py-1.5 text-xs text-black backdrop-blur-md">
+                  <span className="text-[#5409DA]">✦</span>
+                  <span className="text-[11px] text-black">Highlight: {item.tripHighlight}</span>
                 </div>
 
                 {/* Client Profile Footer */}
-                <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
+                <div className="mt-7 flex items-center justify-between pt-5">
                   <div className="flex items-center gap-3.5">
                     {/* Avatar with Glow Border */}
-                    <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-amber-400/40 ring-2 ring-black/80">
+                    <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-[#5409DA]/40 ring-2 ring-white shadow-sm">
                       <Image
                         src={item.avatar}
                         alt={item.name}
@@ -295,21 +295,13 @@ export default function ClientTestimonials() {
 
                     {/* Name & Origin */}
                     <div>
-                      <h4 className="font-serif text-base font-medium text-white sm:text-lg">
+                      <h4 className="font-serif text-base font-medium text-black sm:text-lg">
                         {item.name}
                       </h4>
-                      <p className="text-[11px] uppercase tracking-wider text-white/50 sm:text-xs">
+                      <p className="text-[11px] uppercase tracking-wider text-black sm:text-xs">
                         {item.roleOrLocation}
                       </p>
                     </div>
-                  </div>
-
-                  {/* Verified Traveler Badge */}
-                  <div className="hidden items-center gap-1.5 rounded-full border border-emerald-400/30 bg-emerald-500/10 px-3 py-1 text-[11px] font-medium text-emerald-300 sm:inline-flex">
-                    <svg className="h-3 w-3 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span>Verified Journey</span>
                   </div>
                 </div>
               </motion.div>
@@ -328,7 +320,7 @@ export default function ClientTestimonials() {
               type="button"
               aria-label="Previous testimonial"
               onClick={handlePrev}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/80 backdrop-blur-md transition-all duration-300 hover:border-amber-400/50 hover:bg-white/15 hover:text-white active:scale-95"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
             >
               <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -336,8 +328,8 @@ export default function ClientTestimonials() {
             </button>
 
             {/* Slide Index Indicator */}
-            <div className="flex items-center gap-2 px-3 text-xs font-medium tracking-widest text-white/50">
-              <span className="text-sm font-semibold text-white">
+            <div className="flex items-center gap-2 px-3 text-xs font-medium tracking-widest text-black">
+              <span className="text-sm font-semibold text-black">
                 {String(activeIndex + 1).padStart(2, "0")}
               </span>
               <span>/</span>
@@ -349,7 +341,7 @@ export default function ClientTestimonials() {
               type="button"
               aria-label="Next testimonial"
               onClick={handleNext}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/80 backdrop-blur-md transition-all duration-300 hover:border-amber-400/50 hover:bg-white/15 hover:text-white active:scale-95"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
             >
               <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -367,33 +359,11 @@ export default function ClientTestimonials() {
                 onClick={() => handleSelect(i)}
                 className={`h-1.5 rounded-full transition-all duration-500 ${
                   i === activeIndex
-                    ? "w-7 bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.5)]"
-                    : "w-2 bg-white/20 hover:bg-white/40"
+                    ? "w-7 bg-[#5409DA]"
+                    : "w-2 bg-gray-400 hover:bg-gray-500"
                 }`}
               />
             ))}
-          </div>
-        </div>
-
-        {/* =========================================
-            BOTTOM TRUST STATS
-        ========================================= */}
-        <div className="mt-16 grid grid-cols-2 gap-4 border-t border-white/10 pt-10 sm:grid-cols-4 md:gap-6">
-          <div className="text-center">
-            <p className="font-serif text-2xl font-semibold text-white sm:text-3xl">10,000+</p>
-            <p className="mt-1 text-xs uppercase tracking-wider text-white/50">Happy Travelers</p>
-          </div>
-          <div className="text-center">
-            <p className="font-serif text-2xl font-semibold text-amber-300 sm:text-3xl">4.9 / 5.0</p>
-            <p className="mt-1 text-xs uppercase tracking-wider text-white/50">Average Rating</p>
-          </div>
-          <div className="text-center">
-            <p className="font-serif text-2xl font-semibold text-white sm:text-3xl">98%</p>
-            <p className="mt-1 text-xs uppercase tracking-wider text-white/50">Visa Approval Rate</p>
-          </div>
-          <div className="text-center">
-            <p className="font-serif text-2xl font-semibold text-emerald-400 sm:text-3xl">24 / 7</p>
-            <p className="mt-1 text-xs uppercase tracking-wider text-white/50">Dedicated Support</p>
           </div>
         </div>
 

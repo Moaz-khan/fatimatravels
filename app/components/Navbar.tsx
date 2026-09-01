@@ -40,11 +40,11 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="group relative text-[13px] font-medium tracking-wide text-white/90 transition-colors duration-300 hover:text-white"
+              className="group relative text-[13px] font-medium tracking-wide text-black transition-colors duration-300 hover:text-[#5409DA]"
             >
               {link.name}
 
-              <span className="absolute -bottom-2 left-0 h-px w-0 bg-white transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-2 left-0 h-px w-0 bg-[#5409DA] transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </div>
@@ -54,17 +54,17 @@ export default function Navbar() {
           type="button"
           aria-label="Toggle navigation"
           onClick={() => setMenuOpen((prev) => !prev)}
-          className="relative z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md lg:hidden"
+          className="relative z-50 flex h-11 w-11 items-center justify-center rounded-full border border-gray-300 bg-white/50 backdrop-blur-md lg:hidden"
         >
           <div className="flex w-5 flex-col gap-1.5">
             <span
-              className={`h-px w-full bg-white transition-all duration-300 ${
+              className={`h-px w-full bg-gray-700 transition-all duration-300 ${
                 menuOpen ? "translate-y-[4px] rotate-45" : ""
               }`}
             />
 
             <span
-              className={`h-px w-full bg-white transition-all duration-300 ${
+              className={`h-px w-full bg-gray-700 transition-all duration-300 ${
                 menuOpen ? "-rotate-45" : ""
               }`}
             />
@@ -80,7 +80,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.25 }}
-            className="absolute left-4 right-4 top-20 rounded-2xl border border-white/10 bg-black/85 p-5 backdrop-blur-xl lg:hidden"
+            className="absolute left-4 right-4 top-20 rounded-2xl border border-gray-200 bg-white/90 p-5 backdrop-blur-xl lg:hidden shadow-lg"
           >
             <div className="flex flex-col">
               {navLinks.map((link, index) => (
@@ -88,9 +88,9 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className={`py-4 text-sm text-white/90 transition hover:text-white ${
+                  className={`py-4 text-sm text-black transition hover:text-[#5409DA] ${
                     index !== navLinks.length - 1
-                      ? "border-b border-white/10"
+                      ? "border-b border-gray-200"
                       : ""
                   }`}
                 >

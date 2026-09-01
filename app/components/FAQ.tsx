@@ -101,7 +101,7 @@ export default function FAQ() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden bg-gradient-to-b from-black via-zinc-950 to-black py-24 text-white md:py-32"
+      className="relative overflow-hidden bg-transparent py-24 text-white md:py-32"
     >
       {/* Ambient Lighting */}
       <div className="pointer-events-none absolute left-1/4 top-1/4 h-[500px] w-[500px] rounded-full bg-amber-500/[0.03] blur-[150px]" />
@@ -114,18 +114,18 @@ export default function FAQ() {
         ========================================= */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-4 inline-flex items-center gap-3">
-            <span className="h-px w-8 bg-amber-400/40" />
-            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-amber-300/90">
+            <span className="h-px w-8 bg-gray-400" />
+            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#5409DA]">
               Clear & Transparent Answers
             </span>
-            <span className="h-px w-8 bg-amber-400/40" />
+            <span className="h-px w-8 bg-gray-400" />
           </div>
 
-          <h2 className="font-serif text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[52px] lg:leading-[1.12]">
+          <h2 className="font-serif text-3xl font-medium tracking-tight text-black sm:text-4xl md:text-5xl lg:text-[52px] lg:leading-[1.12]">
             Frequently Asked Questions
           </h2>
 
-          <p className="mt-4 text-sm leading-relaxed text-white/70 sm:text-base md:text-lg">
+          <p className="mt-4 text-sm leading-relaxed text-black sm:text-base md:text-lg">
             Everything you need to know about our luxury holiday packages, sacred pilgrimages, visa assistance, and private booking process.
           </p>
         </div>
@@ -141,10 +141,10 @@ export default function FAQ() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search questions (e.g. Visa, Umrah, Payment)..."
-              className="w-full rounded-full border border-white/15 bg-zinc-900/70 px-5 py-3 pl-11 text-xs text-white placeholder-white/40 backdrop-blur-md transition-all focus:border-amber-400/60 focus:outline-none focus:ring-1 focus:ring-amber-400/30 sm:text-sm"
+              className="w-full rounded-full border border-gray-300 bg-white/50 px-5 py-3 pl-11 text-xs text-black placeholder-gray-500 backdrop-blur-md transition-all focus:border-[#5409DA]/60 focus:outline-none focus:ring-1 focus:ring-[#5409DA]/30 sm:text-sm"
             />
             <svg
-              className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40"
+              className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-black"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -160,7 +160,7 @@ export default function FAQ() {
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-white/50 hover:text-white"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-black"
               >
                 ✕
               </button>
@@ -178,8 +178,8 @@ export default function FAQ() {
                   onClick={() => setActiveCategory(cat.value)}
                   className={`rounded-full px-4 py-2 text-xs font-medium tracking-wider transition-all duration-300 ${
                     isActive
-                      ? "bg-amber-400 font-semibold text-black shadow-[0_0_20px_rgba(251,191,36,0.3)]"
-                      : "border border-white/10 bg-white/5 text-white/70 hover:border-white/30 hover:bg-white/10 hover:text-white"
+                      ? "bg-[#5409DA] font-semibold text-white shadow-lg"
+                      : "border border-gray-300 bg-white/50 text-black hover:border-[#5409DA] hover:bg-blue-50/50 hover:text-[#5409DA]"
                   }`}
                 >
                   {cat.label}
@@ -208,18 +208,18 @@ export default function FAQ() {
                     transition={{ duration: 0.3 }}
                     className={`overflow-hidden rounded-[22px] border transition-all duration-400 ${
                       isOpen
-                        ? "border-amber-400/40 bg-zinc-900/90 shadow-[0_15px_35px_rgba(0,0,0,0.7)] ring-1 ring-amber-400/15"
-                        : "border-white/10 bg-zinc-900/40 hover:border-white/25 hover:bg-zinc-900/60"
+                        ? "border-[#5409DA]/40 bg-white/70 shadow-lg ring-1 ring-[#5409DA]/15 backdrop-blur-md"
+                        : "border-gray-200 bg-white/40 hover:border-[#5409DA]/30 hover:bg-white/60 backdrop-blur-md"
                     }`}
                   >
                     {/* Accordion Trigger Header */}
                     <button
                       type="button"
                       onClick={() => toggleFAQ(faq.id)}
-                      className="flex w-full items-center justify-between gap-4 p-6 text-left transition-colors sm:p-7"
+                      className="flex w-full items-center justify-between gap-4 p-6 text-left transition-colors sm:p-7 group"
                     >
                       <span className={`font-serif text-lg font-medium transition-colors sm:text-xl ${
-                        isOpen ? "text-amber-300" : "text-white group-hover:text-white"
+                        isOpen ? "text-[#5409DA]" : "text-black group-hover:text-[#5409DA]"
                       }`}>
                         {faq.question}
                       </span>
@@ -228,8 +228,8 @@ export default function FAQ() {
                       <div
                         className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
                           isOpen
-                            ? "border-amber-400/50 bg-amber-400 text-black shadow-[0_0_15px_rgba(251,191,36,0.4)] rotate-45"
-                            : "border-white/15 bg-white/5 text-white/80 hover:border-white/40 hover:bg-white/10"
+                            ? "border-[#5409DA]/50 bg-[#5409DA] text-white shadow-md rotate-45"
+                            : "border-gray-300 bg-white/50 text-black hover:border-[#5409DA]/40 hover:bg-blue-50 hover:text-[#5409DA]"
                         }`}
                       >
                         <svg
@@ -262,7 +262,7 @@ export default function FAQ() {
                           }}
                           className="overflow-hidden"
                         >
-                          <div className="border-t border-white/10 px-6 pb-6 pt-4 text-sm leading-relaxed text-white/75 sm:px-7 sm:pb-7 sm:text-base sm:leading-8">
+                          <div className="border-t border-gray-200 px-6 pb-6 pt-4 text-sm leading-relaxed text-black sm:px-7 sm:pb-7 sm:text-base sm:leading-8">
                             <p>{faq.answer}</p>
                           </div>
                         </motion.div>
@@ -272,15 +272,15 @@ export default function FAQ() {
                 );
               })
             ) : (
-              <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-10 text-center">
-                <p className="text-sm text-white/60">No matching questions found for &ldquo;{searchQuery}&rdquo;.</p>
+              <div className="rounded-2xl border border-gray-200 bg-white/40 p-10 text-center backdrop-blur-md">
+                <p className="text-sm text-black">No matching questions found for &ldquo;{searchQuery}&rdquo;.</p>
                 <button
                   type="button"
                   onClick={() => {
                     setSearchQuery("");
                     setActiveCategory("all");
                   }}
-                  className="mt-4 text-xs font-semibold uppercase tracking-wider text-amber-300 hover:underline"
+                  className="mt-4 text-xs font-semibold uppercase tracking-wider text-[#5409DA] hover:underline"
                 >
                   Reset Filters
                 </button>
@@ -292,16 +292,16 @@ export default function FAQ() {
         {/* =========================================
             STILL HAVE QUESTIONS? BOTTOM CARD
         ========================================= */}
-        <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-[26px] border border-amber-500/25 bg-gradient-to-r from-amber-950/30 via-zinc-900/80 to-zinc-900/50 p-8 backdrop-blur-xl md:p-10">
+        <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-[26px] border border-blue-200 bg-blue-50/50 p-8 backdrop-blur-xl md:p-10">
           <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
             <div>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-amber-300">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#5409DA]">
                 24/7 Traveler Helpdesk
               </span>
-              <h4 className="mt-1 font-serif text-2xl font-medium text-white md:text-3xl">
+              <h4 className="mt-1 font-serif text-2xl font-medium text-black md:text-3xl">
                 Have a Specific Question or Custom Request?
               </h4>
-              <p className="mt-2 text-xs text-white/70 sm:text-sm">
+              <p className="mt-2 text-xs text-black sm:text-sm">
                 Speak directly with our senior travel specialists for immediate flight, visa, or Umrah guidance.
               </p>
             </div>
@@ -310,7 +310,7 @@ export default function FAQ() {
               href="https://wa.me/923001234567?text=Hello%20Fatima%20Travels!%20I%20have%20a%20question%20regarding%20travel%20packages%20and%20visas."
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 inline-flex items-center gap-2.5 rounded-full bg-amber-400 px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-black shadow-[0_0_25px_rgba(251,191,36,0.3)] transition-all hover:bg-amber-300 hover:shadow-[0_0_35px_rgba(251,191,36,0.5)] active:scale-95"
+              className="shrink-0 inline-flex items-center gap-2.5 rounded-full border border-[#5409DA] bg-white px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-black shadow-sm transition-all hover:bg-gray-50 hover:shadow-md active:scale-95"
             >
               <span>Chat with an Expert</span>
               <span>→</span>

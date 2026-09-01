@@ -68,7 +68,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-black text-white">
+    <section className="relative min-h-screen overflow-hidden bg-transparent text-black">
 
       {/* =========================================
           BACKGROUND IMAGE
@@ -84,6 +84,10 @@ export default function Hero() {
             ease: "easeInOut",
           }}
           className="absolute inset-0"
+          style={{
+            maskImage: "linear-gradient(to bottom, black 75%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to bottom, black 75%, transparent 100%)"
+          }}
         >
           <motion.div
             initial={{ scale: 1.08 }}
@@ -105,16 +109,6 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </AnimatePresence>
-
-      {/* =========================================
-          OVERLAYS
-      ========================================= */}
-
-      <div className="absolute inset-0 bg-black/30" />
-
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-transparent" />
-
-      <div className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-black/90 to-transparent" />
 
       {/* =========================================
           HERO CONTENT
@@ -144,25 +138,25 @@ export default function Hero() {
           >
             {/* Small Heading */}
             <div className="mb-5 flex items-center gap-3">
-              <span className="h-px w-10 bg-white/70" />
+              <span className="h-px w-10 bg-gray-500" />
 
-              <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/80">
+              <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-black">
                 Explore The World
               </span>
             </div>
 
             {/* Destination Name */}
-            <h1 className="font-serif text-6xl font-medium leading-[0.9] tracking-[-0.04em] sm:text-7xl md:text-8xl lg:text-[105px]">
+            <h1 className="font-serif text-6xl font-medium leading-[0.9] tracking-[-0.04em] text-black sm:text-7xl md:text-8xl lg:text-[105px]">
               {activeDestination.name}
             </h1>
 
             {/* Country */}
-            <p className="mt-5 text-xs uppercase tracking-[0.28em] text-white/70 md:text-sm">
+            <p className="mt-5 text-xs uppercase tracking-[0.28em] text-black md:text-sm">
               {activeDestination.country}
             </p>
 
             {/* Description */}
-            <p className="mt-6 max-w-lg text-sm leading-7 text-white/75 md:text-base">
+            <p className="mt-6 max-w-lg text-sm leading-7 text-black md:text-base">
               {activeDestination.description}
             </p>
 
@@ -170,7 +164,7 @@ export default function Hero() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="#destinations"
-                className="group inline-flex items-center gap-3 rounded-full bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-black transition hover:bg-white/90"
+                className="group inline-flex items-center gap-3 rounded-full bg-white border border-[#5409DA] px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-black transition hover:bg-gray-50"
               >
                 Get Details
 
@@ -181,7 +175,7 @@ export default function Hero() {
 
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/5 px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white backdrop-blur-sm transition hover:border-white/60 hover:bg-white/10"
+                className="inline-flex items-center gap-3 rounded-full border border-[#5409DA] bg-white px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-black backdrop-blur-sm transition hover:bg-gray-50"
               >
                 Contact Us
               </Link>
@@ -201,15 +195,15 @@ export default function Hero() {
             {/* Carousel Header */}
             <div className="mb-3 flex items-center justify-between md:justify-end md:gap-5">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] uppercase tracking-[0.25em] text-white/60">
+                <span className="text-[10px] uppercase tracking-[0.25em] text-black">
                   Destinations
                 </span>
 
-                <span className="h-px w-8 bg-white/30" />
+                <span className="h-px w-8 bg-gray-400" />
               </div>
 
-              <div className="text-xs text-white/60">
-                <span className="text-white">
+              <div className="text-xs text-black">
+                <span className="text-black">
                   {String(activeIndex + 1).padStart(2, "0")}
                 </span>
 
@@ -240,7 +234,7 @@ export default function Hero() {
                         duration: 0.45,
                         ease: [0.22, 1, 0.36, 1],
                       }}
-                      className="relative overflow-hidden rounded-xl"
+                      className="relative overflow-hidden rounded-xl bg-white/50 backdrop-blur-sm"
                     >
                       <Image
                         src={destination.image}
@@ -254,25 +248,22 @@ export default function Hero() {
                         }`}
                       />
 
-                      {/* Card Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-
                       {/* Border */}
                       <div
                         className={`absolute inset-0 rounded-xl border transition ${
                           isActive
-                            ? "border-white/80"
-                            : "border-white/10 group-hover:border-white/40"
+                            ? "border-[#5409DA]"
+                            : "border-gray-300 group-hover:border-[#5409DA]/50"
                         }`}
                       />
 
                       {/* Card Content */}
                       <div className="absolute inset-x-0 bottom-0 p-4">
-                        <p className="text-sm font-medium text-white">
+                        <p className="text-sm font-medium text-black">
                           {destination.name}
                         </p>
 
-                        <p className="mt-1 text-[9px] uppercase tracking-[0.18em] text-white/50">
+                        <p className="mt-1 text-[9px] uppercase tracking-[0.18em] text-black">
                           {destination.country}
                         </p>
                       </div>

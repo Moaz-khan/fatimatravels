@@ -174,7 +174,7 @@ export default function TopDestinationsCarousel() {
   const translateX = centerOffset - activeIndex * (cardWidth + cardGap);
 
   return (
-    <section className="relative overflow-hidden bg-black py-24 text-white md:py-32">
+    <section className="relative overflow-hidden bg-transparent py-24 text-white md:py-32">
       {/* Background Lighting */}
       <div className="pointer-events-none absolute left-1/4 top-1/4 h-[550px] w-[550px] -translate-y-1/2 rounded-full bg-cyan-500/[0.04] blur-[150px]" />
       <div className="pointer-events-none absolute right-1/4 bottom-1/4 h-[550px] w-[550px] rounded-full bg-amber-500/[0.04] blur-[150px]" />
@@ -186,18 +186,18 @@ export default function TopDestinationsCarousel() {
         ========================================= */}
         <div className="mx-auto max-w-3xl text-center">
           <div className="mb-4 inline-flex items-center gap-3">
-            <span className="h-px w-8 bg-white/40" />
-            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/75">
+            <span className="h-px w-8 bg-gray-400" />
+            <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-black">
               Worldwide Explorations
             </span>
-            <span className="h-px w-8 bg-white/40" />
+            <span className="h-px w-8 bg-gray-400" />
           </div>
 
-          <h2 className="font-serif text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[52px] lg:leading-[1.12]">
+          <h2 className="font-serif text-3xl font-medium tracking-tight text-black sm:text-4xl md:text-5xl lg:text-[52px] lg:leading-[1.12]">
             Top destinations in the world
           </h2>
 
-          <p className="mt-4 text-sm leading-relaxed text-white/70 sm:text-base md:text-lg">
+          <p className="mt-4 text-sm leading-relaxed text-black sm:text-base md:text-lg">
             Unveiling extraordinary destinations and unforgettable adventures
           </p>
         </div>
@@ -247,10 +247,10 @@ export default function TopDestinationsCarousel() {
                   width: `${cardWidth}px`,
                   flexShrink: 0,
                 }}
-                className={`group relative cursor-pointer overflow-hidden rounded-[28px] border transition-shadow duration-500 sm:rounded-[36px] ${
+                className={`group relative cursor-pointer overflow-hidden rounded-[28px] border transition-shadow duration-500 sm:rounded-[36px] bg-blue-50/40 backdrop-blur-md ${
                   isActive
-                    ? "border-white/40 shadow-[0_25px_60px_rgba(0,0,0,0.9)] ring-1 ring-white/20"
-                    : "border-white/10 hover:border-white/30 hover:opacity-80"
+                    ? "border-[#5409DA] ring-1 ring-[#5409DA]/20"
+                    : "border-gray-200 hover:border-[#5409DA]/50 hover:opacity-80"
                 }`}
               >
                 {/* Card Container */}
@@ -267,17 +267,13 @@ export default function TopDestinationsCarousel() {
                     }`}
                   />
 
-                  {/* Deep Cinematic Gradients */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent" />
-
                   {/* Top Badges */}
                   <div className="absolute left-5 right-5 top-5 flex items-center justify-between gap-2 sm:left-7 sm:top-7">
-                    <span className="inline-flex items-center rounded-full border border-white/20 bg-black/60 px-3.5 py-1.5 text-[11px] font-semibold tracking-wider text-white backdrop-blur-md">
+                    <span className="inline-flex items-center rounded-full border border-[#5409DA]/30 bg-blue-100/50 px-3.5 py-1.5 text-[11px] font-semibold tracking-wider text-black backdrop-blur-md">
                       {destination.category}
                     </span>
 
-                    <span className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] uppercase tracking-widest text-white/80 backdrop-blur-md">
+                    <span className="inline-flex items-center rounded-full border border-gray-300 bg-white/50 px-3 py-1 text-[10px] uppercase tracking-widest text-black backdrop-blur-md">
                       Best: {destination.bestSeason}
                     </span>
                   </div>
@@ -285,22 +281,22 @@ export default function TopDestinationsCarousel() {
                   {/* Bottom Content */}
                   <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
                     {/* Country */}
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-white/60">
+                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-black">
                       {destination.country}
                     </p>
 
                     {/* Destination Title */}
-                    <h3 className="mt-1 font-serif text-3xl font-medium tracking-tight text-white sm:text-4xl md:text-5xl">
+                    <h3 className="mt-1 font-serif text-3xl font-medium tracking-tight text-black sm:text-4xl md:text-5xl">
                       {destination.name}
                     </h3>
 
                     {/* Tagline */}
-                    <p className="mt-2 text-xs font-medium text-white/85 sm:text-sm">
+                    <p className="mt-2 text-xs font-medium text-black sm:text-sm">
                       {destination.tagline}
                     </p>
 
                     {/* Description */}
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-white/65">
+                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-black">
                       {destination.description}
                     </p>
 
@@ -309,7 +305,7 @@ export default function TopDestinationsCarousel() {
                       {destination.highlights.map((h, i) => (
                         <span
                           key={i}
-                          className="rounded-full border border-white/15 bg-white/10 px-2.5 py-0.5 text-[10px] text-white/80 backdrop-blur-md"
+                          className="rounded-full border border-[#5409DA]/20 bg-blue-50/50 px-2.5 py-0.5 text-[10px] text-black backdrop-blur-md"
                         >
                           {h}
                         </span>
@@ -323,7 +319,7 @@ export default function TopDestinationsCarousel() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2.5 rounded-full bg-white px-5 py-3 text-xs font-semibold uppercase tracking-wider text-black shadow-lg shadow-black/50 transition-all duration-300 hover:bg-emerald-400 hover:shadow-emerald-500/25 active:scale-95"
+                        className="inline-flex items-center gap-2.5 rounded-full bg-white border border-[#5409DA] px-5 py-3 text-xs font-semibold uppercase tracking-wider text-black transition-all duration-300 hover:bg-gray-50 active:scale-95"
                       >
                         <span>Explore Trip</span>
                         <svg
@@ -337,7 +333,7 @@ export default function TopDestinationsCarousel() {
                         </svg>
                       </a>
 
-                      <span className="text-xs font-medium tracking-widest text-white/40">
+                      <span className="text-xs font-medium tracking-widest text-black">
                         {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
                       </span>
                     </div>
@@ -358,7 +354,7 @@ export default function TopDestinationsCarousel() {
           type="button"
           aria-label="Previous destination"
           onClick={prevSlide}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/80 backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/15 hover:text-white active:scale-95"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -379,7 +375,7 @@ export default function TopDestinationsCarousel() {
                 className="group relative h-2 overflow-hidden rounded-full transition-all duration-500"
                 style={{
                   width: isActive ? "56px" : "14px",
-                  backgroundColor: "rgba(255, 255, 255, 0.2)",
+                  backgroundColor: "rgba(84, 9, 218, 0.2)",
                 }}
               >
                 {/* Apple-style animated progress fill */}
@@ -392,7 +388,7 @@ export default function TopDestinationsCarousel() {
                       duration: isPlaying && !isHovered ? AUTO_PLAY_DURATION / 1000 : 0,
                       ease: "linear",
                     }}
-                    className="h-full rounded-full bg-white"
+                    className="h-full rounded-full bg-[#5409DA]"
                   />
                 )}
               </button>
@@ -405,7 +401,7 @@ export default function TopDestinationsCarousel() {
           type="button"
           aria-label="Next destination"
           onClick={nextSlide}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/80 backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/15 hover:text-white active:scale-95"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -417,7 +413,7 @@ export default function TopDestinationsCarousel() {
           type="button"
           aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
           onClick={() => setIsPlaying((prev) => !prev)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-white/80 backdrop-blur-md transition-all duration-300 hover:border-white/50 hover:bg-white/15 hover:text-white active:scale-95"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
         >
           {isPlaying && !isHovered ? (
             <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
