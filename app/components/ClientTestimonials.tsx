@@ -163,7 +163,13 @@ export default function ClientTestimonials() {
         {/* =========================================
             SECTION HEADER
         ========================================= */}
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mx-auto max-w-3xl text-center"
+        >
           {/* Tagline */}
           <div className="mb-4 inline-flex items-center gap-3">
             <span className="h-px w-8 bg-black" />
@@ -182,12 +188,16 @@ export default function ClientTestimonials() {
           <p className="mt-4 text-sm leading-relaxed text-black sm:text-base md:text-lg">
             Hear from our esteemed travelers who entrusted their sacred pilgrimages, family holidays, and luxury escapes to Fatima Travels.
           </p>
-        </div>
+        </motion.div>
 
         {/* =========================================
             STAGGERED STACKED TESTIMONIAL CARDS
         ========================================= */}
-        <div
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
           className="relative mx-auto mt-16 flex min-h-[460px] w-full max-w-[800px] items-center justify-center sm:min-h-[440px] md:min-h-[420px]"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -307,7 +317,7 @@ export default function ClientTestimonials() {
               </motion.div>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* =========================================
             NAVIGATION CONTROLS & COUNTER

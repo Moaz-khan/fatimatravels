@@ -113,7 +113,13 @@ export default function DomesticPackages() {
         {/* =========================================
             HEADER
         ========================================= */}
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mx-auto max-w-3xl text-center"
+        >
           <div className="mb-3.5 inline-flex items-center gap-3">
             <span className="h-px w-8 bg-gray-400" />
             <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#5409DA]">
@@ -129,7 +135,7 @@ export default function DomesticPackages() {
           <p className="mt-4 text-sm leading-relaxed text-black sm:text-base">
             From the snow-crowned peaks of Hunza and Skardu to the serene waters of Gwadar — immerse yourself in breathtaking domestic getaways.
           </p>
-        </div>
+        </motion.div>
 
         {/* =========================================
             CLEAN COMPACT BENTO GRID
@@ -137,14 +143,18 @@ export default function DomesticPackages() {
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-6">
           
           {/* Bento Destination Cards */}
-          {packages.map((pkg) => {
+          {packages.map((pkg, idx) => {
             const whatsappUrl = `https://wa.me/923001234567?text=${encodeURIComponent(
               `Hello Fatima Travels! I want to inquire about the Domestic Tour: "${pkg.title}" (${pkg.location}) - ${pkg.duration}.`
             )}`;
 
             return (
-              <div
+              <motion.div
                 key={pkg.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className={`group relative overflow-hidden rounded-[24px] border border-gray-200 bg-white/50 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-[#5409DA]/50 hover:shadow-lg hover:bg-white/70 ${pkg.colSpan} ${pkg.heightClass}`}
               >
                 {/* Full-bleed Photo */}
@@ -212,12 +222,18 @@ export default function DomesticPackages() {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
 
           {/* Bento Box 7: Custom Tour CTA Box */}
-          <div className="group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-blue-200 bg-blue-50/30 p-6 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-[#5409DA]/50 hover:shadow-lg col-span-1 md:col-span-1 lg:col-span-1 h-[320px] sm:h-[340px]">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, delay: packages.length * 0.1 }}
+            className="group relative flex flex-col justify-between overflow-hidden rounded-[24px] border border-blue-200 bg-blue-50/30 p-6 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-[#5409DA]/50 hover:shadow-lg col-span-1 md:col-span-1 lg:col-span-1 h-[320px] sm:h-[340px]"
+          >
             <div>
               <span className="inline-flex rounded-full border border-[#5409DA]/30 bg-blue-100/50 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#5409DA]">
                 Tailored Trips
@@ -243,7 +259,7 @@ export default function DomesticPackages() {
                 <span>→</span>
               </a>
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

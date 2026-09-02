@@ -29,7 +29,7 @@ const packages: PackageItem[] = [
     rating: 4.9,
     reviews: 142,
     price: "PKR 185,000",
-    image: "/destinations/dubai.jpg",
+    image: "/destinations/dubai1.jpg",
     tag: "Best Seller",
     description:
       "Experience the pinnacle of modernity with Burj Khalifa access, luxury Marina dhow cruise, and premium red dune desert safari.",
@@ -44,7 +44,7 @@ const packages: PackageItem[] = [
     rating: 4.95,
     reviews: 98,
     price: "PKR 295,000",
-    image: "/destinations/turkey.jpg",
+    image: "/destinations/turkey1.jpg",
     tag: "Trending",
     description:
       "Explore historic Istanbul mosques, Bosphorus yacht tours, and the magical fairy chimneys of Cappadocia with sunrise hot air ballooning.",
@@ -59,7 +59,7 @@ const packages: PackageItem[] = [
     rating: 5.0,
     reviews: 76,
     price: "PKR 430,000",
-    image: "/destinations/maldives.jpg",
+    image: "/destinations/maldives1.jpg",
     tag: "Honeymoon Special",
     description:
       "Pure romantic bliss in an overwater villa, surrounded by turquoise lagoons, coral reefs, private dining, and luxury speedboat transfers.",
@@ -74,7 +74,7 @@ const packages: PackageItem[] = [
     rating: 4.85,
     reviews: 110,
     price: "PKR 225,000",
-    image: "/destinations/malaysia.jpg",
+    image: "/destinations/malaysia1.jpg",
     tag: "Family Favorite",
     description:
       "A vibrant family vacation featuring Kuala Lumpur's iconic towers, Sunway Lagoon theme park, and the serene beaches of Langkawi.",
@@ -89,7 +89,7 @@ const packages: PackageItem[] = [
     rating: 4.98,
     reviews: 64,
     price: "PKR 650,000",
-    image: "/destinations/switzerland.jpg",
+    image: "/destinations/switzerland1.jpg",
     tag: "Premium Grand Tour",
     description:
       "Snow-capped Alpine panoramas, Mount Titlis revolving cable cars, scenic Swiss rail journeys, and sparkling Lake Lucerne.",
@@ -127,7 +127,13 @@ export default function InternationalExperience() {
         {/* =========================================
             SECTION HEADER
         ========================================= */}
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mx-auto max-w-3xl text-center"
+        >
           {/* Tagline */}
           <div className="mb-4 inline-flex items-center gap-3">
             <span className="h-px w-8 bg-gray-400" />
@@ -146,7 +152,7 @@ export default function InternationalExperience() {
           <p className="mt-5 text-sm leading-relaxed text-black sm:text-base md:text-lg">
             Browse our list of holiday packages that is perfect for family, friends and couples that are looking for affordable holiday packages from Pakistan.
           </p>
-        </div>
+        </motion.div>
 
         {/* =========================================
             CATEGORY FILTERS
@@ -180,7 +186,7 @@ export default function InternationalExperience() {
         >
           <AnimatePresence>
             {/* Standard Packages */}
-            {filteredPackages.map((pkg) => {
+            {filteredPackages.map((pkg, idx) => {
               const whatsappInquiryUrl = `https://wa.me/923001234567?text=${encodeURIComponent(
                 `Hello Fatima Travels! I am interested in booking the "${pkg.title}" (${pkg.country}) package for ${pkg.duration}. Please share complete details.`
               )}`;
@@ -189,10 +195,11 @@ export default function InternationalExperience() {
                 <motion.div
                   key={pkg.id}
                   layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white/50 backdrop-blur-md transition-all duration-500 hover:-translate-y-1.5 hover:border-[#5409DA]/50 hover:bg-white/70 hover:shadow-lg"
                 >
                   {/* Image Container */}
@@ -293,10 +300,11 @@ export default function InternationalExperience() {
               <motion.div
                 key="tailored-custom-card"
                 layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
                 className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-blue-200 bg-white/70 backdrop-blur-md p-6 sm:p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-[#5409DA]/50 hover:shadow-lg"
               >
                 <div>

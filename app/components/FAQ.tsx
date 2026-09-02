@@ -112,7 +112,13 @@ export default function FAQ() {
         {/* =========================================
             HEADER
         ========================================= */}
-        <div className="mx-auto max-w-3xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mx-auto max-w-3xl text-center"
+        >
           <div className="mb-4 inline-flex items-center gap-3">
             <span className="h-px w-8 bg-gray-400" />
             <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-[#5409DA]">
@@ -128,7 +134,7 @@ export default function FAQ() {
           <p className="mt-4 text-sm leading-relaxed text-black sm:text-base md:text-lg">
             Everything you need to know about our luxury holiday packages, sacred pilgrimages, visa assistance, and private booking process.
           </p>
-        </div>
+        </motion.div>
 
         {/* =========================================
             SEARCH & CATEGORY TABS
@@ -203,9 +209,10 @@ export default function FAQ() {
                     key={faq.id}
                     layout
                     initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.1 }}
                     exit={{ opacity: 0, scale: 0.98 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
                     className={`overflow-hidden rounded-[22px] border transition-all duration-400 ${
                       isOpen
                         ? "border-[#5409DA]/40 bg-white/70 shadow-lg ring-1 ring-[#5409DA]/15 backdrop-blur-md"
@@ -292,7 +299,13 @@ export default function FAQ() {
         {/* =========================================
             STILL HAVE QUESTIONS? BOTTOM CARD
         ========================================= */}
-        <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-[26px] border border-blue-200 bg-blue-50/50 p-8 backdrop-blur-xl md:p-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-[26px] border border-blue-200 bg-blue-50/50 p-8 backdrop-blur-xl md:p-10"
+        >
           <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
             <div>
               <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#5409DA]">
@@ -316,7 +329,7 @@ export default function FAQ() {
               <span>→</span>
             </a>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

@@ -24,7 +24,7 @@ const destinations: DestinationCard[] = [
     category: "Futuristic Wonder",
     tagline: "Sky-high wonders, golden dunes and royal luxury",
     bestSeason: "Nov – Apr",
-    image: "/destinations/dubai.jpg",
+    image: "/destinations/dubai1.jpg",
     description: "From the world's tallest skyscraper to thrilling desert safaris and Arabian Gulf cruises.",
     highlights: ["Burj Khalifa", "Desert Safari", "Palm Jumeirah", "Dubai Mall"],
   },
@@ -46,7 +46,7 @@ const destinations: DestinationCard[] = [
     category: "Tropical Sanctuary",
     tagline: "Crystal lagoons, coral atolls and private overwater villas",
     bestSeason: "Dec – Apr",
-    image: "/destinations/maldives.jpg",
+    image: "/destinations/maldives1.jpg",
     description: "An idyllic archipelago offering unrivaled serenity, vibrant marine life, and pure ocean luxury.",
     highlights: ["Overwater Villas", "Manta Ray Safari", "Underwater Dining", "Sunset Fishing"],
   },
@@ -68,7 +68,7 @@ const destinations: DestinationCard[] = [
     category: "Alpine Majesty",
     tagline: "Snowcapped peaks, glacial lakes and panoramic train rides",
     bestSeason: "All Year Round",
-    image: "/destinations/switzerland.jpg",
+    image: "/destinations/switzerland1.jpg",
     description: "Pure alpine magic with snow-draped chalets, scenic glacier express railways, and sparkling lakes.",
     highlights: ["Mount Titlis", "Jungfraujoch", "Lake Lucerne", "Interlaken"],
   },
@@ -79,7 +79,7 @@ const destinations: DestinationCard[] = [
     category: "Fairy Chimney Wonderland",
     tagline: "Sunrise hot air balloons soaring over ancient cave valleys",
     bestSeason: "Apr – Oct",
-    image: "/destinations/turkey.jpg",
+    image: "/destinations/turkey1.jpg",
     description: "A surreal landscape of carved rock churches, subterranean cities, and hot air balloon skies.",
     highlights: ["Hot Air Balloon", "Goreme Open Air", "Cave Suites", "Ihlara Valley"],
   },
@@ -101,7 +101,7 @@ const destinations: DestinationCard[] = [
     category: "Tropical Metropolis",
     tagline: "Petronas twin towers, vibrant culture and rainforest getaways",
     bestSeason: "Nov – Aug",
-    image: "/destinations/malaysia.jpg",
+    image: "/destinations/malaysia1.jpg",
     description: "Dynamic city life surrounded by lush tropical nature, iconic towers, and world-class street food.",
     highlights: ["Petronas Towers", "Batu Caves", "Langkawi Island", "Genting Highlands"],
   },
@@ -184,7 +184,16 @@ export default function TopDestinationsCarousel() {
         {/* =========================================
             HEADER
         ========================================= */}
-        <div className="mx-auto max-w-3xl text-center">
+        {/* =========================================
+            HEADER
+        ========================================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mx-auto max-w-3xl text-center"
+        >
           <div className="mb-4 inline-flex items-center gap-3">
             <span className="h-px w-8 bg-gray-400" />
             <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-black">
@@ -200,7 +209,7 @@ export default function TopDestinationsCarousel() {
           <p className="mt-4 text-sm leading-relaxed text-black sm:text-base md:text-lg">
             Unveiling extraordinary destinations and unforgettable adventures
           </p>
-        </div>
+        </motion.div>
       </div>
 
       {/* =========================================
@@ -278,10 +287,10 @@ export default function TopDestinationsCarousel() {
                     </span>
                   </div>
 
-                  {/* Bottom Content */}
-                  <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                  {/* Bottom Content (Half Circle) */}
+                  <div className="absolute inset-x-0 bottom-0 flex flex-col items-center text-center p-6 sm:p-8 pt-10 sm:pt-12 bg-white/95 backdrop-blur-lg rounded-t-[50%] shadow-[0_-10px_30px_rgba(0,0,0,0.1)] transition-all duration-500">
                     {/* Country */}
-                    <p className="text-xs font-semibold uppercase tracking-[0.25em] text-black">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#5409DA]">
                       {destination.country}
                     </p>
 
@@ -291,21 +300,21 @@ export default function TopDestinationsCarousel() {
                     </h3>
 
                     {/* Tagline */}
-                    <p className="mt-2 text-xs font-medium text-black sm:text-sm">
+                    <p className="mt-2 text-xs font-medium text-gray-800 sm:text-sm">
                       {destination.tagline}
                     </p>
 
                     {/* Description */}
-                    <p className="mt-2 line-clamp-2 text-xs leading-relaxed text-black">
+                    <p className="mt-2 line-clamp-2 max-w-sm text-xs leading-relaxed text-gray-600">
                       {destination.description}
                     </p>
 
                     {/* Highlights */}
-                    <div className="mt-4 flex flex-wrap gap-1.5">
+                    <div className="mt-4 flex flex-wrap justify-center gap-1.5 max-w-xs">
                       {destination.highlights.map((h, i) => (
                         <span
                           key={i}
-                          className="rounded-full border border-[#5409DA]/20 bg-blue-50/50 px-2.5 py-0.5 text-[10px] text-black backdrop-blur-md"
+                          className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-[10px] text-gray-700"
                         >
                           {h}
                         </span>
@@ -313,15 +322,19 @@ export default function TopDestinationsCarousel() {
                     </div>
 
                     {/* CTA Button */}
-                    <div className="mt-6 flex items-center justify-between pt-2">
+                    <div className="mt-6 flex w-full max-w-xs items-center justify-between pt-2">
+                      <span className="text-xs font-medium tracking-widest text-gray-400">
+                        {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                      </span>
+
                       <a
                         href={whatsappUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="inline-flex items-center gap-2.5 rounded-full bg-white border border-[#5409DA] px-5 py-3 text-xs font-semibold uppercase tracking-wider text-black transition-all duration-300 hover:bg-gray-50 active:scale-95"
+                        className="inline-flex items-center gap-2.5 rounded-full bg-[#5409DA] border border-[#5409DA] px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-300 hover:bg-[#4307b2] active:scale-95 shadow-md hover:shadow-lg"
                       >
-                        <span>Explore Trip</span>
+                        <span>Explore</span>
                         <svg
                           className="h-3.5 w-3.5"
                           fill="none"
@@ -332,10 +345,6 @@ export default function TopDestinationsCarousel() {
                           <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
                       </a>
-
-                      <span className="text-xs font-medium tracking-widest text-black">
-                        {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                      </span>
                     </div>
                   </div>
                 </div>
