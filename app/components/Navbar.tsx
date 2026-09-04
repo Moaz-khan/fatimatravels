@@ -8,11 +8,11 @@ import { AnimatePresence, motion } from "framer-motion";
 const navLinks = [
   { name: "About Us", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Hajj & Umrah", href: "/#hajj-umrah" },
-  { name: "Visa", href: "/#visa" },
-  { name: "International", href: "/#international" },
-  { name: "Domestic", href: "/#domestic" },
-  { name: "Contact Us", href: "/#contact" },
+  { name: "Hajj & Umrah", href: "/packages?type=hajj-umrah" },
+  { name: "Visa", href: "/packages?type=visa" },
+  { name: "International", href: "/packages?type=international" },
+  { name: "Domestic", href: "/packages?type=domestic" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
