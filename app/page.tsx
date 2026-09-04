@@ -10,7 +10,6 @@ import Footer from "./components/Footer";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Navbar />
       
       {/* Hero Section */}
       <div className="relative z-20 bg-transparent">
@@ -37,7 +36,6 @@ export default function Home() {
         <DomesticPackages />
         <ClientTestimonials />
         <FAQ />
-        <Footer />
       </div>
     </main>
   );

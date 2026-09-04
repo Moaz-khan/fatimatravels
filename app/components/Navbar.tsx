@@ -6,13 +6,13 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
-  { name: "About Us", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Hajj & Umrah", href: "#hajj-umrah" },
-  { name: "Visa", href: "#visa" },
-  { name: "International", href: "#international" },
-  { name: "Domestic", href: "#domestic" },
-  { name: "Contact Us", href: "#contact" },
+  { name: "About Us", href: "/about" },
+  { name: "Services", href: "/services" },
+  { name: "Hajj & Umrah", href: "/#hajj-umrah" },
+  { name: "Visa", href: "/#visa" },
+  { name: "International", href: "/#international" },
+  { name: "Domestic", href: "/#domestic" },
+  { name: "Contact Us", href: "/#contact" },
 ];
 
 export default function Navbar() {
