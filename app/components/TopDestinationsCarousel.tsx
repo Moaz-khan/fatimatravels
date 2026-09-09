@@ -125,11 +125,11 @@ export default function TopDestinationsCarousel() {
     if (typeof window === "undefined") return;
     const screenW = window.innerWidth;
     if (screenW < 640) {
-      setCardWidth(screenW * 0.85); // 85vw on mobile
+      setCardWidth(Math.min(screenW * 0.8, 300)); // Make mobile cards smaller
     } else if (screenW < 1024) {
-      setCardWidth(420);
+      setCardWidth(380);
     } else {
-      setCardWidth(520);
+      setCardWidth(480);
     }
 
     if (containerRef.current) {
@@ -263,13 +263,13 @@ export default function TopDestinationsCarousel() {
                 }`}
               >
                 {/* Card Container */}
-                <div className="relative h-[480px] w-full sm:h-[530px] md:h-[580px]">
+                <div className="relative h-[400px] w-full sm:h-[480px] md:h-[540px]">
                   {/* Background Photo */}
                   <Image
                     src={destination.image}
                     alt={destination.name}
                     fill
-                    sizes="(max-width: 640px) 85vw, (max-width: 1024px) 420px, 520px"
+                    sizes="(max-width: 640px) 300px, (max-width: 1024px) 380px, 480px"
                     priority={index === 0 || index === 1}
                     className={`object-cover transition-transform duration-1000 ease-out ${
                       isActive ? "scale-105" : "scale-100 group-hover:scale-105"
@@ -277,18 +277,18 @@ export default function TopDestinationsCarousel() {
                   />
 
                   {/* Top Badges */}
-                  <div className="absolute left-5 right-5 top-5 flex items-center justify-between gap-2 sm:left-7 sm:top-7">
-                    <span className="inline-flex items-center rounded-full border border-[#5409DA]/30 bg-blue-100/50 px-3.5 py-1.5 text-[11px] font-semibold tracking-wider text-black backdrop-blur-md">
+                  <div className="absolute left-4 right-4 top-4 flex flex-col items-start gap-2 sm:left-6 sm:top-6 sm:flex-row sm:items-center sm:justify-between">
+                    <span className="inline-flex items-center rounded-full border border-[#5409DA]/30 bg-blue-100/50 px-3.5 py-1.5 text-[10px] sm:text-[11px] font-semibold tracking-wider text-black backdrop-blur-md">
                       {destination.category}
                     </span>
 
-                    <span className="inline-flex items-center rounded-full border border-gray-300 bg-white/50 px-3 py-1 text-[10px] uppercase tracking-widest text-black backdrop-blur-md">
+                    <span className="inline-flex items-center rounded-full border border-gray-300 bg-white/50 px-3 py-1 text-[9px] sm:text-[10px] uppercase tracking-widest text-black backdrop-blur-md">
                       Best: {destination.bestSeason}
                     </span>
                   </div>
 
                   {/* Bottom Content (Half Circle) */}
-                  <div className="absolute inset-x-0 bottom-0 flex flex-col items-center text-center p-6 sm:p-8 pt-10 sm:pt-12 bg-white/95 backdrop-blur-lg rounded-t-[50%] shadow-[0_-10px_30px_rgba(0,0,0,0.1)] transition-all duration-500">
+                  <div className="absolute inset-x-0 bottom-0 flex flex-col items-center text-center p-4 sm:p-6 pt-8 sm:pt-10 bg-white/95 backdrop-blur-lg rounded-t-[100px] sm:rounded-t-[140px] shadow-[0_-10px_30px_rgba(0,0,0,0.1)] transition-all duration-500">
                     {/* Country */}
                     <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#5409DA]">
                       {destination.country}
@@ -363,7 +363,7 @@ export default function TopDestinationsCarousel() {
           type="button"
           aria-label="Previous destination"
           onClick={prevSlide}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -410,7 +410,7 @@ export default function TopDestinationsCarousel() {
           type="button"
           aria-label="Next destination"
           onClick={nextSlide}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -422,7 +422,7 @@ export default function TopDestinationsCarousel() {
           type="button"
           aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
           onClick={() => setIsPlaying((prev) => !prev)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
         >
           {isPlaying && !isHovered ? (
             <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">

@@ -9,24 +9,20 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-dvh">
       
       {/* Hero Section */}
       <div className="relative z-20 bg-transparent">
         <Hero />
       </div>
 
-      {/* Fixed Video Background for the rest of the page */}
+      {/* Fixed Image Background for the rest of the page */}
       <div className="fixed inset-0 z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        <img
+          src="/bgimage.jpg"
+          alt="Background"
           className="h-full w-full object-cover"
-        >
-          <source src="/background2.mp4" type="video/mp4" />
-        </video>
+        />
       </div>
 
       {/* Content wrapper for the rest of the sections, with transparent backgrounds */}

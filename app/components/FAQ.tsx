@@ -147,7 +147,7 @@ export default function FAQ() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search questions (e.g. Visa, Umrah, Payment)..."
-              className="w-full rounded-full border border-gray-300 bg-white/50 px-5 py-3 pl-11 text-xs text-black placeholder-gray-500 backdrop-blur-md transition-all focus:border-[#5409DA]/60 focus:outline-none focus:ring-1 focus:ring-[#5409DA]/30 sm:text-sm"
+              className="w-full rounded-full border border-gray-300 bg-white/50 px-5 py-3 pl-11 text-base text-black placeholder-gray-500 backdrop-blur-md transition-all focus:border-[#5409DA]/60 focus:outline-none focus:ring-1 focus:ring-[#5409DA]/30"
             />
             <svg
               className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-black"
@@ -166,7 +166,7 @@ export default function FAQ() {
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-gray-400 hover:text-black"
+                className="absolute right-4 top-1/2 -translate-y-1/2 flex min-h-11 min-w-11 items-center justify-center text-xs text-gray-400 hover:text-black"
               >
                 ✕
               </button>
@@ -182,7 +182,7 @@ export default function FAQ() {
                   key={cat.value}
                   type="button"
                   onClick={() => setActiveCategory(cat.value)}
-                  className={`rounded-full px-4 py-2 text-xs font-medium tracking-wider transition-all duration-300 ${
+                  className={`min-h-11 rounded-full px-4 py-2 text-xs font-medium tracking-wider transition-all duration-300 ${
                     isActive
                       ? "bg-[#5409DA] font-semibold text-white shadow-lg"
                       : "border border-gray-300 bg-white/50 text-black hover:border-[#5409DA] hover:bg-blue-50/50 hover:text-[#5409DA]"

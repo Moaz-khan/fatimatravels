@@ -116,7 +116,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-transparent py-20">
+    <section className="relative flex min-h-dvh flex-col items-center justify-end lg:justify-center overflow-hidden bg-transparent pt-20">
       {/* =========================================
           BACKGROUND IMAGE
       ========================================= */}
@@ -156,7 +156,7 @@ export default function Hero() {
       {/* =========================================
           MAIN LAYOUT (LEFT CARDS - CIRCLE - RIGHT CARDS)
       ========================================= */}
-      <div className="relative z-10 mx-auto flex w-full max-w-[1300px] flex-col items-center justify-center gap-10 px-6 lg:flex-row lg:gap-16 xl:gap-24">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1300px] flex-col items-center justify-end lg:justify-center gap-10 px-0 sm:px-6 lg:flex-row lg:gap-16 xl:gap-24 h-full flex-1">
         
         {/* Left Cards (Hidden on mobile) */}
         <div className="hidden flex-col justify-center gap-6 lg:flex">
@@ -167,8 +167,8 @@ export default function Hero() {
           })}
         </div>
 
-        {/* Center Circle */}
-        <div className="flex h-[350px] w-[350px] shrink-0 items-center justify-center rounded-full border border-white/20 bg-[#FBFBFB] shadow-2xl backdrop-blur-md sm:h-[450px] sm:w-[450px] md:h-[500px] md:w-[500px]">
+        {/* Center Content (Half circle on mobile, Full circle on desktop) */}
+        <div className="flex w-full flex-col items-center justify-end rounded-t-[200px] sm:rounded-t-full sm:aspect-square sm:w-[450px] lg:w-[500px] shrink-0 sm:items-center sm:justify-center sm:rounded-full border border-white/20 border-b-0 sm:border-b bg-[#FBFBFB] shadow-2xl backdrop-blur-md pb-10 pt-16 sm:p-0 mt-auto">
           {/* Center Content */}
           <div className="relative z-20 flex flex-col items-center p-6 text-center sm:p-8">
             <AnimatePresence mode="wait">
@@ -210,7 +210,7 @@ export default function Hero() {
             <div className="relative z-30 mt-6 flex flex-wrap justify-center gap-3 sm:mt-8 sm:gap-4">
               <Link
                 href="#destinations"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#5409DA] px-5 py-2.5 text-[10px] font-semibold uppercase tracking-wider text-white transition hover:bg-[#4307b2] sm:px-7 sm:py-3.5 sm:text-xs shadow-lg"
+                className="group inline-flex items-center gap-2 rounded-full bg-[#5409DA] px-5 py-2.5 text-[10px] font-semibold uppercase tracking-wider text-white transition hover:bg-[#4307b2] sm:px-7 sm:py-3.5 sm:text-xs shadow-lg min-h-[44px]"
               >
                 Get Details
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -220,7 +220,7 @@ export default function Hero() {
 
               <Link
                 href="#contact"
-                className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-transparent px-5 py-2.5 text-[10px] font-semibold uppercase tracking-wider text-black backdrop-blur-sm transition hover:border-[#5409DA] hover:text-[#5409DA] hover:bg-black/5 sm:px-7 sm:py-3.5 sm:text-xs"
+                className="inline-flex items-center gap-2 rounded-full border border-black/20 bg-transparent px-5 py-2.5 text-[10px] font-semibold uppercase tracking-wider text-black backdrop-blur-sm transition hover:border-[#5409DA] hover:text-[#5409DA] hover:bg-black/5 sm:px-7 sm:py-3.5 sm:text-xs min-h-[44px]"
               >
                 Contact Us
               </Link>
@@ -235,15 +235,6 @@ export default function Hero() {
             const curveClass = i === 1 ? "" : "-translate-x-12 xl:-translate-x-16";
             return renderCard(dest, i + 3, curveClass);
           })}
-        </div>
-
-        {/* Mobile/Tablet Cards Layout (Visible only on <lg) */}
-        <div className="mt-8 grid w-full grid-cols-2 gap-4 sm:grid-cols-3 lg:hidden">
-          {destinations.map((dest, i) => (
-            <div key={dest.id} className="flex justify-center">
-              {renderCard(dest, i)}
-            </div>
-          ))}
         </div>
       </div>
     </section>
