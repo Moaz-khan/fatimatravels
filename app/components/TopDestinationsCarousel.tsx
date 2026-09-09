@@ -357,13 +357,14 @@ export default function TopDestinationsCarousel() {
       {/* =========================================
           PAGINATION BAR WITH LEFT/RIGHT & PLAY/PAUSE CONTROLS
       ========================================= */}
-      <div className="mx-auto mt-8 flex max-w-[1500px] flex-wrap items-center justify-center gap-3.5 px-6 md:mt-10 md:gap-5">
+      <div className="mx-auto mt-8 flex max-w-[1500px] flex-wrap items-center justify-center gap-4 px-6 md:mt-10 md:flex-nowrap md:gap-5">
+        
         {/* Prev Slide Button */}
         <button
           type="button"
           aria-label="Previous destination"
           onClick={prevSlide}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
+          className="order-2 flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95 md:order-1"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -371,38 +372,40 @@ export default function TopDestinationsCarousel() {
         </button>
 
         {/* Apple-style Segmented Pagination Indicators */}
-        <div className="flex items-center gap-2">
-          {destinations.map((dest, i) => {
-            const isActive = i === activeIndex;
+        <div className="order-1 mb-2 flex w-full justify-center md:order-2 md:mb-0 md:w-auto">
+          <div className="flex items-center gap-2">
+            {destinations.map((dest, i) => {
+              const isActive = i === activeIndex;
 
-            return (
-              <button
-                key={dest.id}
-                type="button"
-                aria-label={`Go to slide ${i + 1} - ${dest.name}`}
-                onClick={() => goToSlide(i)}
-                className="group relative h-2 overflow-hidden rounded-full transition-all duration-500"
-                style={{
-                  width: isActive ? "56px" : "14px",
-                  backgroundColor: "rgba(84, 9, 218, 0.2)",
-                }}
-              >
-                {/* Apple-style animated progress fill */}
-                {isActive && (
-                  <motion.div
-                    key={`${activeIndex}-${isPlaying && !isHovered}`}
-                    initial={{ width: "0%" }}
-                    animate={{ width: isPlaying && !isHovered ? "100%" : "0%" }}
-                    transition={{
-                      duration: isPlaying && !isHovered ? AUTO_PLAY_DURATION / 1000 : 0,
-                      ease: "linear",
-                    }}
-                    className="h-full rounded-full bg-[#5409DA]"
-                  />
-                )}
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={dest.id}
+                  type="button"
+                  aria-label={`Go to slide ${i + 1} - ${dest.name}`}
+                  onClick={() => goToSlide(i)}
+                  className="group relative h-2 overflow-hidden rounded-full transition-all duration-500"
+                  style={{
+                    width: isActive ? "56px" : "14px",
+                    backgroundColor: "rgba(84, 9, 218, 0.2)",
+                  }}
+                >
+                  {/* Apple-style animated progress fill */}
+                  {isActive && (
+                    <motion.div
+                      key={`${activeIndex}-${isPlaying && !isHovered}`}
+                      initial={{ width: "0%" }}
+                      animate={{ width: isPlaying && !isHovered ? "100%" : "0%" }}
+                      transition={{
+                        duration: isPlaying && !isHovered ? AUTO_PLAY_DURATION / 1000 : 0,
+                        ease: "linear",
+                      }}
+                      className="h-full rounded-full bg-[#5409DA]"
+                    />
+                  )}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Next Slide Button */}
@@ -410,7 +413,7 @@ export default function TopDestinationsCarousel() {
           type="button"
           aria-label="Next destination"
           onClick={nextSlide}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
+          className="order-3 flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95 md:order-3"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -422,7 +425,7 @@ export default function TopDestinationsCarousel() {
           type="button"
           aria-label={isPlaying ? "Pause carousel" : "Play carousel"}
           onClick={() => setIsPlaying((prev) => !prev)}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95"
+          className="order-4 hidden h-11 w-11 items-center justify-center rounded-full border border-[#5409DA]/30 bg-white/50 text-black backdrop-blur-md transition-all duration-300 hover:border-[#5409DA] hover:bg-white hover:text-[#5409DA] active:scale-95 md:flex md:order-4"
         >
           {isPlaying && !isHovered ? (
             <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
