@@ -144,7 +144,7 @@ export default function DomesticPackages() {
           
           {/* Bento Destination Cards */}
           {packages.map((pkg, idx) => {
-            const whatsappUrl = `https://wa.me/923001234567?text=${encodeURIComponent(
+            const whatsappUrl = `https://wa.me/923082731644?text=${encodeURIComponent(
               `Hello Fatima Travels! I want to inquire about the Domestic Tour: "${pkg.title}" (${pkg.location}) - ${pkg.duration}.`
             )}`;
 
@@ -250,7 +250,7 @@ export default function DomesticPackages() {
 
             <div className="pt-4 border-t border-gray-300">
               <a
-                href="https://wa.me/923001234567?text=Hello%20Fatima%20Travels!%20I%20want%20to%20plan%20a%20customized%20domestic%20tour%20package."
+                href="https://wa.me/923082731644?text=Hello%20Fatima%20Travels!%20I%20want%20to%20plan%20a%20customized%20domestic%20tour%20package."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex w-full min-h-11 items-center justify-center gap-2 rounded-full bg-white border border-[#5409DA] py-3 text-xs font-semibold uppercase tracking-wider text-black backdrop-blur-md transition-all duration-300 hover:bg-blue-50 hover:text-[#5409DA] active:scale-95"

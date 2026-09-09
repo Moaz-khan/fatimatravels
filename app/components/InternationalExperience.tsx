@@ -187,7 +187,7 @@ export default function InternationalExperience() {
           <AnimatePresence>
             {/* Standard Packages */}
             {filteredPackages.map((pkg, idx) => {
-              const whatsappInquiryUrl = `https://wa.me/923001234567?text=${encodeURIComponent(
+              const whatsappInquiryUrl = `https://wa.me/923082731644?text=${encodeURIComponent(
                 `Hello Fatima Travels! I am interested in booking the "${pkg.title}" (${pkg.country}) package for ${pkg.duration}. Please share complete details.`
               )}`;
 
@@ -364,7 +364,7 @@ export default function InternationalExperience() {
                   </div>
 
                   <a
-                    href="https://wa.me/923001234567?text=Hello%20Fatima%20Travels!%20I%20want%20to%20design%20a%20customized%20international%20tour%20package."
+                    href="https://wa.me/923082731644?text=Hello%20Fatima%20Travels!%20I%20want%20to%20design%20a%20customized%20international%20tour%20package."
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-[#5409DA] bg-white px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-black transition-all hover:bg-blue-50 hover:text-[#5409DA] active:scale-95"

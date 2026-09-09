@@ -24,12 +24,12 @@ const footerLinks = {
     { label: "FAQ", href: "#faq" },
   ],
   "Contact Us": [
-    { label: "+92 300 123 4567", href: "tel:+923001234567" },
+    { label: "+92 308 273 1644", href: "tel:+923082731644" },
     { label: "info@fatimatravels.pk", href: "mailto:info@fatimatravels.pk" },
     { label: "Send a Message", href: "#contact" },
   ],
   "Social Media": [
-    { label: "WhatsApp", href: "https://wa.me/923001234567" },
+    { label: "WhatsApp", href: "https://wa.me/923082731644" },
     { label: "Facebook", href: "#" },
     { label: "Instagram", href: "#" },
     { label: "YouTube", href: "#" },

@@ -236,7 +236,7 @@ export default function TopDestinationsCarousel() {
         >
           {destinations.map((destination, index) => {
             const isActive = index === activeIndex;
-            const whatsappUrl = `https://wa.me/923001234567?text=${encodeURIComponent(
+            const whatsappUrl = `https://wa.me/923082731644?text=${encodeURIComponent(
               `Hello Fatima Travels! I am interested in exploring holiday packages for "${destination.name}, ${destination.country}". Please share itinerary and prices.`
             )}`;
 

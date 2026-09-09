@@ -320,7 +320,7 @@ export default function FAQ() {
             </div>
 
             <a
-              href="https://wa.me/923001234567?text=Hello%20Fatima%20Travels!%20I%20have%20a%20question%20regarding%20travel%20packages%20and%20visas."
+              href="https://wa.me/923082731644?text=Hello%20Fatima%20Travels!%20I%20have%20a%20question%20regarding%20travel%20packages%20and%20visas."
               target="_blank"
               rel="noopener noreferrer"
               className="shrink-0 inline-flex items-center gap-2.5 rounded-full border border-[#5409DA] bg-white px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-black shadow-sm transition-all hover:bg-gray-50 hover:shadow-md active:scale-95"
