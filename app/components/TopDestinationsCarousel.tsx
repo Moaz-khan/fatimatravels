@@ -3,113 +3,23 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { urlForImage } from "@/sanity/lib/image";
 
-interface DestinationCard {
-  id: number;
-  name: string;
+export interface DestinationCard {
+  _id: string;
+  title: string;
   country: string;
-  category: string;
+  subCategory: string[];
   tagline: string;
   bestSeason: string;
-  image: string;
-  description: string;
-  highlights: string[];
+  image: any;
+  description: any;
+  includes: string[];
 }
-
-const destinations: DestinationCard[] = [
-  {
-    id: 1,
-    name: "Dubai",
-    country: "United Arab Emirates",
-    category: "Futuristic Wonder",
-    tagline: "Sky-high wonders, golden dunes and royal luxury",
-    bestSeason: "Nov – Apr",
-    image: "/destinations/dubai1.jpg",
-    description: "From the world's tallest skyscraper to thrilling desert safaris and Arabian Gulf cruises.",
-    highlights: ["Burj Khalifa", "Desert Safari", "Palm Jumeirah", "Dubai Mall"],
-  },
-  {
-    id: 2,
-    name: "Santorini",
-    country: "Greece",
-    category: "Aegean Paradise",
-    tagline: "Whitewashed cliffs, cobalt blue domes and sunset vistas",
-    bestSeason: "May – Oct",
-    image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=1200&auto=format&fit=crop",
-    description: "The crown jewel of the Cyclades, famous for iconic cliffside villages and volcanic beaches.",
-    highlights: ["Oia Sunsets", "Caldera Cruise", "Fira Town", "Red Beach"],
-  },
-  {
-    id: 3,
-    name: "Maldives",
-    country: "Indian Ocean",
-    category: "Tropical Sanctuary",
-    tagline: "Crystal lagoons, coral atolls and private overwater villas",
-    bestSeason: "Dec – Apr",
-    image: "/destinations/maldives1.jpg",
-    description: "An idyllic archipelago offering unrivaled serenity, vibrant marine life, and pure ocean luxury.",
-    highlights: ["Overwater Villas", "Manta Ray Safari", "Underwater Dining", "Sunset Fishing"],
-  },
-  {
-    id: 4,
-    name: "Kyoto & Tokyo",
-    country: "Japan",
-    category: "Timeless Heritage",
-    tagline: "Ancient shrines, cherry blossoms and neon-lit avenues",
-    bestSeason: "Mar – May / Oct – Nov",
-    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1200&auto=format&fit=crop",
-    description: "A breathtaking harmony between thousand-year-old temples and futuristic cityscapes.",
-    highlights: ["Fushimi Inari", "Arashiyama Grove", "Mount Fuji", "Shibuya Crossing"],
-  },
-  {
-    id: 5,
-    name: "Swiss Alps",
-    country: "Switzerland",
-    category: "Alpine Majesty",
-    tagline: "Snowcapped peaks, glacial lakes and panoramic train rides",
-    bestSeason: "All Year Round",
-    image: "/destinations/switzerland1.jpg",
-    description: "Pure alpine magic with snow-draped chalets, scenic glacier express railways, and sparkling lakes.",
-    highlights: ["Mount Titlis", "Jungfraujoch", "Lake Lucerne", "Interlaken"],
-  },
-  {
-    id: 6,
-    name: "Cappadocia",
-    country: "Türkiye",
-    category: "Fairy Chimney Wonderland",
-    tagline: "Sunrise hot air balloons soaring over ancient cave valleys",
-    bestSeason: "Apr – Oct",
-    image: "/destinations/turkey1.jpg",
-    description: "A surreal landscape of carved rock churches, subterranean cities, and hot air balloon skies.",
-    highlights: ["Hot Air Balloon", "Goreme Open Air", "Cave Suites", "Ihlara Valley"],
-  },
-  {
-    id: 7,
-    name: "Bali",
-    country: "Indonesia",
-    category: "Island of the Gods",
-    tagline: "Lush emerald terraces, sacred temples and surf beaches",
-    bestSeason: "Apr – Oct",
-    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1200&auto=format&fit=crop",
-    description: "A spiritual sanctuary blending tropical rainforests, cliffside temples, and vibrant coastal culture.",
-    highlights: ["Ubud Terraces", "Tanah Lot", "Nusa Penida", "Seminyak Sunsets"],
-  },
-  {
-    id: 8,
-    name: "Kuala Lumpur",
-    country: "Malaysia",
-    category: "Tropical Metropolis",
-    tagline: "Petronas twin towers, vibrant culture and rainforest getaways",
-    bestSeason: "Nov – Aug",
-    image: "/destinations/malaysia1.jpg",
-    description: "Dynamic city life surrounded by lush tropical nature, iconic towers, and world-class street food.",
-    highlights: ["Petronas Towers", "Batu Caves", "Langkawi Island", "Genting Highlands"],
-  },
-];
 
 const AUTO_PLAY_DURATION = 5000; // 5 seconds per slide
 
-export default function TopDestinationsCarousel() {
+export default function TopDestinationsCarousel({ destinations }: { destinations: DestinationCard[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
@@ -237,12 +147,12 @@ export default function TopDestinationsCarousel() {
           {destinations.map((destination, index) => {
             const isActive = index === activeIndex;
             const whatsappUrl = `https://wa.me/923082731644?text=${encodeURIComponent(
-              `Hello Fatima Travels! I am interested in exploring holiday packages for "${destination.name}, ${destination.country}". Please share itinerary and prices.`
+              `Hello Fatima Travels! I am interested in exploring holiday packages for "${destination.title}, ${destination.country}". Please share itinerary and prices.`
             )}`;
 
             return (
               <motion.div
-                key={destination.id}
+                key={destination._id}
                 onClick={() => goToSlide(index)}
                 animate={{
                   scale: isActive ? 1 : 0.92,
@@ -266,8 +176,8 @@ export default function TopDestinationsCarousel() {
                 <div className="relative h-[400px] w-full sm:h-[480px] md:h-[540px]">
                   {/* Background Photo */}
                   <Image
-                    src={destination.image}
-                    alt={destination.name}
+                    src={destination.image?.asset ? urlForImage(destination.image).url() : (typeof destination.image === 'string' ? destination.image : "/destinations/dubai1.jpg")}
+                    alt={destination.title}
                     fill
                     sizes="(max-width: 640px) 300px, (max-width: 1024px) 380px, 480px"
                     priority={index === 0 || index === 1}
@@ -279,7 +189,7 @@ export default function TopDestinationsCarousel() {
                   {/* Top Badges */}
                   <div className="absolute left-4 right-4 top-4 flex flex-col items-start gap-2 sm:left-6 sm:top-6 sm:flex-row sm:items-center sm:justify-between">
                     <span className="inline-flex items-center rounded-full border border-[#5409DA]/30 bg-blue-100/50 px-3.5 py-1.5 text-[10px] sm:text-[11px] font-semibold tracking-wider text-black backdrop-blur-md">
-                      {destination.category}
+                      {destination.subCategory?.[0] || 'Popular'}
                     </span>
 
                     <span className="inline-flex items-center rounded-full border border-gray-300 bg-white/50 px-3 py-1 text-[9px] sm:text-[10px] uppercase tracking-widest text-black backdrop-blur-md">
@@ -296,7 +206,7 @@ export default function TopDestinationsCarousel() {
 
                     {/* Destination Title */}
                     <h3 className="mt-1 font-serif text-3xl font-medium tracking-tight text-black sm:text-4xl md:text-5xl">
-                      {destination.name}
+                      {destination.title}
                     </h3>
 
                     {/* Tagline */}
@@ -306,12 +216,12 @@ export default function TopDestinationsCarousel() {
 
                     {/* Description */}
                     <p className="mt-2 line-clamp-2 max-w-sm text-xs leading-relaxed text-gray-600">
-                      {destination.description}
+                      {typeof destination.description === 'string' ? destination.description : destination.description?.[0]?.children?.[0]?.text || ''}
                     </p>
 
                     {/* Highlights */}
                     <div className="mt-4 flex flex-wrap justify-center gap-1.5 max-w-xs">
-                      {destination.highlights.map((h, i) => (
+                      {destination.includes?.slice(0,4).map((h, i) => (
                         <span
                           key={i}
                           className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-[10px] text-gray-700"
@@ -379,9 +289,9 @@ export default function TopDestinationsCarousel() {
 
               return (
                 <button
-                  key={dest.id}
+                  key={dest._id || i}
                   type="button"
-                  aria-label={`Go to slide ${i + 1} - ${dest.name}`}
+                  aria-label={`Go to slide ${i + 1} - ${dest.title}`}
                   onClick={() => goToSlide(i)}
                   className="group relative h-2 overflow-hidden rounded-full transition-all duration-500"
                   style={{

@@ -3,99 +3,22 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { urlForImage } from "@/sanity/lib/image";
 
-interface PackageItem {
-  id: number;
+export interface IntlPackageItem {
+  _id: string;
   title: string;
   country: string;
-  category: "all" | "family" | "couples" | "luxury" | "popular";
+  subCategory: string[];
   duration: string;
   rating: number;
   reviews: number;
   price: string;
-  image: string;
+  image: any;
   tag?: string;
-  inclusions: string[];
-  description: string;
+  includes: string[];
+  description: any;
 }
-
-const packages: PackageItem[] = [
-  {
-    id: 1,
-    title: "Dubai Luxury & Desert Safari",
-    country: "United Arab Emirates",
-    category: "popular",
-    duration: "5 Days / 4 Nights",
-    rating: 4.9,
-    reviews: 142,
-    price: "PKR 185,000",
-    image: "/destinations/dubai1.jpg",
-    tag: "Best Seller",
-    description:
-      "Experience the pinnacle of modernity with Burj Khalifa access, luxury Marina dhow cruise, and premium red dune desert safari.",
-    inclusions: ["4-Star Hotel", "Daily Breakfast", "Desert Safari", "Marina Cruise", "Visa Assistance"],
-  },
-  {
-    id: 2,
-    title: "Enchanting Turkey & Cappadocia",
-    country: "Türkiye",
-    category: "couples",
-    duration: "7 Days / 6 Nights",
-    rating: 4.95,
-    reviews: 98,
-    price: "PKR 295,000",
-    image: "/destinations/turkey1.jpg",
-    tag: "Trending",
-    description:
-      "Explore historic Istanbul mosques, Bosphorus yacht tours, and the magical fairy chimneys of Cappadocia with sunrise hot air ballooning.",
-    inclusions: ["4-Star / Boutique Hotel", "Domestic Flights", "Bosphorus Cruise", "Cappadocia Tour", "Airport Transfers"],
-  },
-  {
-    id: 3,
-    title: "Maldives Private Island Retreat",
-    country: "Indian Ocean",
-    category: "luxury",
-    duration: "5 Days / 4 Nights",
-    rating: 5.0,
-    reviews: 76,
-    price: "PKR 430,000",
-    image: "/destinations/maldives1.jpg",
-    tag: "Honeymoon Special",
-    description:
-      "Pure romantic bliss in an overwater villa, surrounded by turquoise lagoons, coral reefs, private dining, and luxury speedboat transfers.",
-    inclusions: ["Overwater Villa", "All Inclusive Meals", "Speedboat Transfer", "Snorkeling Tour", "Free Visa on Arrival"],
-  },
-  {
-    id: 4,
-    title: "Malaysia & Langkawi Island Hopping",
-    country: "Southeast Asia",
-    category: "family",
-    duration: "6 Days / 5 Nights",
-    rating: 4.85,
-    reviews: 110,
-    price: "PKR 225,000",
-    image: "/destinations/malaysia1.jpg",
-    tag: "Family Favorite",
-    description:
-      "A vibrant family vacation featuring Kuala Lumpur's iconic towers, Sunway Lagoon theme park, and the serene beaches of Langkawi.",
-    inclusions: ["4-Star Hotels", "Daily Breakfast", "City Tour & Cable Car", "Island Hopping", "E-Visa Processing"],
-  },
-  {
-    id: 5,
-    title: "Majestic Switzerland & Alpine Peaks",
-    country: "Europe",
-    category: "luxury",
-    duration: "8 Days / 7 Nights",
-    rating: 4.98,
-    reviews: 64,
-    price: "PKR 650,000",
-    image: "/destinations/switzerland1.jpg",
-    tag: "Premium Grand Tour",
-    description:
-      "Snow-capped Alpine panoramas, Mount Titlis revolving cable cars, scenic Swiss rail journeys, and sparkling Lake Lucerne.",
-    inclusions: ["Luxury Alpine Hotels", "Swiss Travel Pass", "Mount Titlis Excursion", "Breakfast Included", "Schengen Visa Guidance"],
-  },
-];
 
 const filterCategories = [
   { label: "All Packages", value: "all" },
@@ -105,13 +28,13 @@ const filterCategories = [
   { label: "Luxury Escapes", value: "luxury" },
 ];
 
-export default function InternationalExperience() {
+export default function InternationalExperience({ packages }: { packages: IntlPackageItem[] }) {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredPackages =
     activeFilter === "all"
       ? packages
-      : packages.filter((pkg) => pkg.category === activeFilter);
+      : packages.filter((pkg) => pkg.subCategory?.includes(activeFilter));
 
   return (
     <section
@@ -193,7 +116,7 @@ export default function InternationalExperience() {
 
               return (
                 <motion.div
-                  key={pkg.id}
+                  key={pkg._id}
                   layout
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -205,7 +128,7 @@ export default function InternationalExperience() {
                   {/* Image Container */}
                   <div className="relative h-64 w-full overflow-hidden">
                     <Image
-                      src={pkg.image}
+                      src={pkg.image?.asset ? urlForImage(pkg.image).url() : (typeof pkg.image === 'string' ? pkg.image : "/destinations/dubai1.jpg")}
                       alt={pkg.title}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -248,12 +171,12 @@ export default function InternationalExperience() {
 
                     {/* Description */}
                     <p className="mt-3 line-clamp-2 text-xs leading-relaxed text-black">
-                      {pkg.description}
+                      {typeof pkg.description === 'string' ? pkg.description : pkg.description?.[0]?.children?.[0]?.text || ''}
                     </p>
 
                     {/* Inclusions / Highlights */}
                     <div className="mt-4 flex flex-wrap gap-1.5 border-t border-gray-200 pt-4">
-                      {pkg.inclusions.slice(0, 3).map((item, idx) => (
+                      {pkg.includes?.slice(0, 3).map((item, idx) => (
                         <span
                           key={idx}
                           className="inline-flex items-center gap-1 rounded-md border border-[#5409DA]/20 bg-blue-50/50 px-2 py-0.5 text-[10px] text-black"
@@ -261,9 +184,9 @@ export default function InternationalExperience() {
                           <span className="text-[#5409DA]">✓</span> {item}
                         </span>
                       ))}
-                      {pkg.inclusions.length > 3 && (
+                      {(pkg.includes?.length || 0) > 3 && (
                         <span className="rounded-md border border-gray-200 bg-gray-50 px-2 py-0.5 text-[10px] text-black">
-                          +{pkg.inclusions.length - 3} more
+                          +{(pkg.includes?.length || 0) - 3} more
                         </span>
                       )}
                     </div>

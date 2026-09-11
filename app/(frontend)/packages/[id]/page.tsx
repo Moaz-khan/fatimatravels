@@ -1,18 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { packagesData } from "../../data/packages";
+import { client } from "@/sanity/lib/client";
+import { groq } from "next-sanity";
 import { FaClock, FaCheckCircle, FaArrowLeft, FaFileAlt, FaHotel, FaMoneyBillWave, FaStar, FaPassport } from "react-icons/fa";
+import { urlForImage } from "@/sanity/lib/image";
 
-export function generateStaticParams() {
-  return packagesData.map((pkg) => ({
-    id: pkg.id,
-  }));
+export async function generateStaticParams() {
+  const ids = await client.fetch(groq`*[_type == "package"][]._id`);
+  return ids.map((id: string) => ({ id }));
 }
 
 export default async function PackageDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
-  const pkg = packagesData.find((p) => p.id === resolvedParams.id);
+  
+  const pkg = await client.fetch(
+    groq`*[_type == "package" && (_id == $id || slug.current == $id)][0]`,
+    { id: resolvedParams.id }
+  );
 
   if (!pkg) {
     notFound();
@@ -25,7 +30,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
       {/* Hero Image Section */}
       <section className="relative h-[40vh] md:h-[50vh] w-full bg-gray-900">
         <Image 
-          src={pkg.image}
+          src={pkg.image?.asset ? urlForImage(pkg.image).url() : (typeof pkg.image === 'string' ? pkg.image : "/destinations/dubai1.jpg")}
           alt={pkg.title}
           fill
           className="object-cover opacity-60"
@@ -46,7 +51,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <span className="px-3 py-1 bg-[#5409DA]/10 text-[#5409DA] rounded-full text-xs font-bold uppercase tracking-wide">
-                  {pkg.type.replace("-", " ")}
+                  {pkg.type?.replace("-", " ")}
                 </span>
                 <span className="flex items-center gap-1.5 text-sm font-medium text-gray-500">
                   <FaClock className="text-gray-400" /> {pkg.duration}
@@ -68,7 +73,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">Overview</h3>
                 <p className="text-gray-600 leading-relaxed text-lg">
-                  {pkg.description}
+                  {typeof pkg.description === 'string' ? pkg.description : pkg.description?.[0]?.children?.[0]?.text || ''}
                 </p>
               </div>
 
@@ -87,17 +92,19 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
               )}
 
               {/* Included Items */}
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">What's Included</h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {pkg.includes.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <FaCheckCircle className="text-[#5409DA] h-5 w-5 mt-0.5 shrink-0" />
-                      <span className="text-gray-700 font-medium">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {pkg.includes && pkg.includes.length > 0 && (
+                <div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">What's Included</h3>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {pkg.includes.map((item: string, idx: number) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <FaCheckCircle className="text-[#5409DA] h-5 w-5 mt-0.5 shrink-0" />
+                        <span className="text-gray-700 font-medium">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {/* Required Documents */}
               {pkg.requiredDocuments && pkg.requiredDocuments.length > 0 && (
@@ -106,7 +113,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
                     <FaFileAlt className="text-[#5409DA]" /> Required Documents
                   </h3>
                   <ul className="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-3">
-                    {pkg.requiredDocuments.map((doc, idx) => (
+                    {pkg.requiredDocuments.map((doc: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-3 text-gray-700 font-medium">
                         <span className="h-2 w-2 rounded-full bg-[#5409DA] mt-2 shrink-0"></span>
                         {doc}
@@ -123,7 +130,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
                     <FaHotel className="text-[#5409DA]" /> Accommodation Details
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {pkg.hotels.map((hotel, idx) => (
+                    {pkg.hotels.map((hotel: any, idx: number) => (
                       <div key={idx} className="bg-white border border-gray-200 p-5 rounded-2xl shadow-sm">
                         <h4 className="font-bold text-gray-900 text-lg mb-1">{hotel.name}</h4>
                         <div className="flex items-center gap-1 mb-3">
@@ -152,7 +159,7 @@ export default async function PackageDetailPage({ params }: { params: Promise<{ 
                     <FaMoneyBillWave className="text-[#5409DA]" /> Cost Summary
                   </h4>
                   <div className="space-y-4 mb-6">
-                    {pkg.amountBreakdown.map((item, idx) => (
+                    {pkg.amountBreakdown.map((item: any, idx: number) => (
                       <div key={idx} className="flex justify-between items-center text-sm">
                         <span className="text-gray-600">{item.label}</span>
                         <span className="font-bold text-gray-900">{item.amount}</span>

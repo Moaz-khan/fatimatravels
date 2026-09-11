@@ -17,7 +17,7 @@ export default function ServicesPage() {
   return (
     <div className="w-full bg-white">
       {/* 1. Hero Section */}
-      <section className="relative h-96 md:h-[500px] w-full bg-gray-900 flex items-center justify-center text-center px-4">
+      <section className="relative h-96 md:h-125 w-full bg-gray-900 flex items-center justify-center text-center px-4">
         <Image 
           src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=2074&auto=format&fit=crop"
           alt="Services Hero"
@@ -57,7 +57,7 @@ export default function ServicesPage() {
         <div className="space-y-24">
           {/* Service 1 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative h-80 lg:h-[500px] w-full rounded-3xl overflow-hidden shadow-xl">
+            <div className="relative h-80 lg:h-125 w-full rounded-3xl overflow-hidden shadow-xl">
                <Image 
                   src="https://images.unsplash.com/photo-1540339832862-4745ea731ea7?q=80&w=2070&auto=format&fit=crop" 
                   alt="Flight Ticketing"
@@ -127,7 +127,7 @@ export default function ServicesPage() {
                 ))}
               </ul>
             </div>
-            <div className="relative h-80 lg:h-[500px] w-full rounded-3xl overflow-hidden shadow-xl order-1 lg:order-2">
+            <div className="relative h-80 lg:h-125 w-full rounded-3xl overflow-hidden shadow-xl order-1 lg:order-2">
                <Image 
                   src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=2070&auto=format&fit=crop" 
                   alt="Visa Processing"
@@ -139,7 +139,7 @@ export default function ServicesPage() {
 
           {/* Service 3 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative h-80 lg:h-[500px] w-full rounded-3xl overflow-hidden shadow-xl">
+            <div className="relative h-80 lg:h-125 w-full rounded-3xl overflow-hidden shadow-xl">
                <Image 
                   src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=1974&auto=format&fit=crop" 
                   alt="Custom Holiday Packages"

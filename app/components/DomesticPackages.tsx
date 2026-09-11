@@ -1,104 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { urlForImage } from "@/sanity/lib/image";
 
-interface DomesticPackage {
-  id: string;
+export interface DomesticPackage {
+  _id: string;
   title: string;
   location: string;
   tag: string;
   duration: string;
   rating: number;
   price: string;
-  image: string;
-  highlights: string[];
-  colSpan: string;
-  heightClass: string;
+  image: any;
+  includes: string[];
 }
 
-const packages: DomesticPackage[] = [
-  {
-    id: "hunza",
-    title: "Hunza Valley & Attabad Lake",
-    location: "Gilgit-Baltistan",
-    tag: "Most Popular",
-    duration: "6D / 5N",
-    rating: 4.98,
-    price: "PKR 65,000",
-    image: "https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?q=80&w=1200&auto=format&fit=crop",
-    highlights: ["Attabad Boating", "Passu Cones", "Baltit Fort", "Khunjerab Pass"],
-    colSpan: "col-span-1 md:col-span-2 lg:col-span-2",
-    heightClass: "h-[340px] sm:h-[370px]",
-  },
-  {
-    id: "skardu",
-    title: "Skardu & Deosai Plains",
-    location: "Baltistan",
-    tag: "Land of Giants",
-    duration: "7D / 6N",
-    rating: 4.95,
-    price: "PKR 85,000",
-    image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?q=80&w=1200&auto=format&fit=crop",
-    highlights: ["Shangrila Resort", "Cold Desert", "Deosai Plateau"],
-    colSpan: "col-span-1 md:col-span-1 lg:col-span-1",
-    heightClass: "h-[340px] sm:h-[370px]",
-  },
-  {
-    id: "swat",
-    title: "Swat & Malam Jabba Ski",
-    location: "Khyber Pakhtunkhwa",
-    tag: "Scenic Valley",
-    duration: "4D / 3N",
-    rating: 4.89,
-    price: "PKR 45,000",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
-    highlights: ["Malam Jabba Ski", "Mahodand Lake", "Ushu Forest"],
-    colSpan: "col-span-1 md:col-span-1 lg:col-span-1",
-    heightClass: "h-[320px] sm:h-[350px]",
-  },
-  {
-    id: "neelum",
-    title: "Neelum Valley & Arang Kel",
-    location: "Azad Kashmir",
-    tag: "Paradise",
-    duration: "5D / 4N",
-    rating: 4.92,
-    price: "PKR 52,000",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop",
-    highlights: ["Arang Kel Cable Car", "Kutton Waterfall", "Keran"],
-    colSpan: "col-span-1 md:col-span-1 lg:col-span-1",
-    heightClass: "h-[320px] sm:h-[350px]",
-  },
-  {
-    id: "fairy-meadows",
-    title: "Fairy Meadows & Nanga Parbat",
-    location: "Diamer, Gilgit",
-    tag: "Adventure Trek",
-    duration: "5D / 4N",
-    rating: 4.97,
-    price: "PKR 58,000",
-    image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop",
-    highlights: ["4x4 Jeep Safari", "Camp Under Stars", "Base Camp View"],
-    colSpan: "col-span-1 md:col-span-1 lg:col-span-1",
-    heightClass: "h-[320px] sm:h-[350px]",
-  },
-  {
-    id: "gwadar",
-    title: "Gwadar & Makran Coastal Highway",
-    location: "Balochistan Coast",
-    tag: "Golden Beaches",
-    duration: "4D / 3N",
-    rating: 4.88,
-    price: "PKR 48,000",
-    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1200&auto=format&fit=crop",
-    highlights: ["Kund Malir Beach", "Princess of Hope", "Hammerhead Sunset"],
-    colSpan: "col-span-1 md:col-span-2 lg:col-span-2",
-    heightClass: "h-[320px] sm:h-[340px]",
-  },
-];
+export default function DomesticPackages({ packages }: { packages: DomesticPackage[] }) {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-export default function DomesticPackages() {
   return (
     <section
       id="domestic"
@@ -142,28 +63,29 @@ export default function DomesticPackages() {
         ========================================= */}
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 md:gap-6">
           
-          {/* Bento Destination Cards */}
-          {packages.map((pkg, idx) => {
-            const whatsappUrl = `https://wa.me/923082731644?text=${encodeURIComponent(
-              `Hello Fatima Travels! I want to inquire about the Domestic Tour: "${pkg.title}" (${pkg.location}) - ${pkg.duration}.`
-            )}`;
-
-            return (
+          {packages.map((pkg, index) => {
+              // Re-assign colSpan and heightClass based on index since it's dynamic now
+              const colSpan = index === 0 ? "md:col-span-2 md:row-span-2" : (index === 4 ? "md:col-span-2 md:row-span-1" : "md:col-span-1 md:row-span-1");
+              const heightClass = index === 0 ? "h-[400px] md:h-full" : "h-[300px]";
+              
+              return (
               <motion.div
-                key={pkg.id}
+                key={pkg._id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className={`group relative overflow-hidden rounded-[24px] border border-gray-200 bg-white/50 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-[#5409DA]/50 hover:shadow-lg hover:bg-white/70 ${pkg.colSpan} ${pkg.heightClass}`}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                onMouseEnter={() => setHoveredId(pkg._id)}
+                onMouseLeave={() => setHoveredId(null)}
+                className={`group relative overflow-hidden rounded-2xl bg-gray-900 ${colSpan} ${heightClass}`}
               >
-                {/* Full-bleed Photo */}
+                {/* Background Image */}
                 <Image
-                  src={pkg.image}
+                  src={pkg.image?.asset ? urlForImage(pkg.image).url() : (typeof pkg.image === 'string' ? pkg.image : "/destinations/dubai1.jpg")}
                   alt={pkg.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100"
                 />
 
                 {/* Top Floating Badges */}
@@ -191,7 +113,7 @@ export default function DomesticPackages() {
 
                   {/* Highlights Pills */}
                   <div className="mt-2.5 flex flex-wrap gap-1.5">
-                    {pkg.highlights.map((h, i) => (
+                    {pkg.includes?.map((h, i) => (
                       <span
                         key={i}
                         className="rounded-md border border-[#5409DA]/20 bg-blue-50/50 px-2 py-0.5 text-[10px] text-black backdrop-blur-md"
@@ -212,7 +134,7 @@ export default function DomesticPackages() {
                     </div>
 
                     <a
-                      href={whatsappUrl}
+                      href={`https://wa.me/923082731644?text=${encodeURIComponent(`Hello Fatima Travels! I want to inquire about the Domestic Tour: "${pkg.title}" (${pkg.location}) - ${pkg.duration}.`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 rounded-full bg-white border border-[#5409DA] px-4 py-2.5 min-h-11 text-xs font-semibold uppercase tracking-wider text-black shadow-sm transition-all duration-300 hover:bg-gray-50 active:scale-95"

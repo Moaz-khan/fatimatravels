@@ -4,8 +4,9 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { packagesData, PackageType, SubCategory } from "../data/packages";
+import { PackageType, SubCategory } from "@/app/data/packages";
 import { FaClock } from "react-icons/fa";
+import { urlForImage } from "@/sanity/lib/image";
 
 const types: { id: PackageType | 'all'; label: string }[] = [
   { id: 'all', label: 'All Packages' },
@@ -24,7 +25,7 @@ const subCategories: { id: SubCategory; label: string }[] = [
   { id: 'luxury', label: 'Luxury' },
 ];
 
-function PackagesContent() {
+export default function PackagesContent({ packagesData }: { packagesData: any[] }) {
   const searchParams = useSearchParams();
   const initialTypeParam = searchParams.get("type") as PackageType | null;
 
@@ -43,7 +44,7 @@ function PackagesContent() {
 
   const filteredPackages = packagesData.filter(pkg => {
     const matchType = activeType === 'all' || pkg.type === activeType;
-    const matchSub = activeSubCat === 'all' || pkg.subCategory.includes(activeSubCat);
+    const matchSub = activeSubCat === 'all' || pkg.subCategory?.includes(activeSubCat);
     return matchType && matchSub;
   });
 
@@ -112,10 +113,10 @@ function PackagesContent() {
         {filteredPackages.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredPackages.map(pkg => (
-              <div key={pkg.id} className="bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-50 hover:shadow-xl transition-shadow flex flex-col group">
+              <div key={pkg._id} className="bg-white rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-gray-50 hover:shadow-xl transition-shadow flex flex-col group">
                 <div className="relative h-60 w-full overflow-hidden">
                   <Image 
-                    src={pkg.image}
+                    src={pkg.image?.asset ? urlForImage(pkg.image).url() : (typeof pkg.image === 'string' ? pkg.image : "/destinations/dubai1.jpg")}
                     alt={pkg.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -132,11 +133,11 @@ function PackagesContent() {
                   
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#5409DA] transition-colors">{pkg.title}</h3>
                   <p className="text-sm text-gray-500 line-clamp-3 mb-6 flex-grow">
-                    {pkg.description}
+                    {typeof pkg.description === 'string' ? pkg.description : pkg.description?.[0]?.children?.[0]?.text || ''}
                   </p>
                   
                   <Link 
-                    href={`/packages/${pkg.id}`}
+                    href={`/packages/${pkg.slug?.current || pkg._id}`}
                     className="w-full block text-center py-3.5 bg-gray-50 text-gray-900 font-semibold rounded-xl hover:bg-[#5409DA] hover:text-white transition-colors"
                   >
                     View Details
@@ -159,17 +160,5 @@ function PackagesContent() {
         )}
       </div>
     </div>
-  );
-}
-
-export default function PackagesPage() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-[#F8F9FA]">
-        <div className="animate-spin rounded-full h-12 w-12 border-4 border-gray-200 border-t-[#5409DA]"></div>
-      </div>
-    }>
-      <PackagesContent />
-    </Suspense>
   );
 }

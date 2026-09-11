@@ -155,10 +155,10 @@ export default function ClientTestimonials() {
       className="relative overflow-hidden bg-transparent py-24 text-black md:py-32"
     >
       {/* Ambient Luxury Lighting */}
-      <div className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 h-[550px] w-[750px] rounded-full bg-amber-500/[0.035] blur-[150px]" />
-      <div className="pointer-events-none absolute right-10 bottom-10 h-[350px] w-[350px] rounded-full bg-emerald-500/[0.025] blur-[120px]" />
+      <div className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 h-137.5 w-187.5 rounded-full bg-amber-500/[0.035] blur-[150px]" />
+      <div className="pointer-events-none absolute right-10 bottom-10 h-87.5 w-87.5 rounded-full bg-emerald-500/2.5 blur-[120px]" />
 
-      <div className="relative mx-auto max-w-[1500px] px-6 md:px-10 lg:px-14">
+      <div className="relative mx-auto max-w-375 px-6 md:px-10 lg:px-14">
         
         {/* =========================================
             SECTION HEADER
@@ -198,7 +198,7 @@ export default function ClientTestimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative mx-auto mt-16 flex min-h-[460px] w-full max-w-[800px] items-center justify-center sm:min-h-[440px] md:min-h-[420px]"
+          className="relative mx-auto mt-16 flex min-h-115 w-full max-w-200 items-center justify-center sm:min-h-110 md:min-h-105"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -240,7 +240,7 @@ export default function ClientTestimonials() {
                   mass: 0.8,
                 }}
                 style={{ zIndex }}
-                className={`absolute w-full max-w-[92vw] cursor-pointer rounded-[28px] border transition-all duration-500 sm:max-w-[560px] md:max-w-[640px] lg:max-w-[700px] ${
+                className={`absolute w-full max-w-[92vw] cursor-pointer rounded-[28px] border transition-all duration-500 sm:max-w-140 md:max-w-160 lg:max-w-175 ${
                   isActive
                     ? "border-[#5409DA]/40 bg-[#FBFBFB] p-7 shadow-lg ring-1 ring-[#5409DA]/20 sm:p-9 md:p-10"
                     : "border-gray-200 bg-[#FBFBFB] p-7 hover:border-[#5409DA]/30 sm:p-9 md:p-10"
